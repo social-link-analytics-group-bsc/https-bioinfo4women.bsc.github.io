@@ -3,18 +3,526 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Prueba rápida · Bioinfo4Women</title>
+  <title>Bioinfo4Women · Bioinformatics for Women's Health</title>
   <style>
-    body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:0;display:flex;align-items:center;justify-content:center;height:100vh;background:#f7fafc;color:#0f172a}
-    .card{padding:2rem;border-radius:12px;background:white;box-shadow:0 6px 24px rgba(2,6,23,0.08);text-align:center}
-    code{background:#eef2ff;padding:0.2rem 0.35rem;border-radius:4px}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: #2d3748;
+      line-height: 1.6;
+    }
+    
+    /* Navigation */
+    nav {
+      background: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    nav .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #5a3e85;
+    }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: #4a5568;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    nav a:hover {
+      color: #5a3e85;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0.95;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      background: white;
+      color: #5a3e85;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    /* Sections */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #5a3e85;
+      text-align: center;
+    }
+    
+    section p {
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+      color: #4a5568;
+    }
+    
+    /* Grid Layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #5a3e85;
+    }
+    
+    .card p {
+      font-size: 1rem;
+      color: #718096;
+    }
+    
+    /* Background alternating */
+    section:nth-child(even) {
+      background: #f7fafc;
+    }
+    
+    /* Footer */
+    footer {
+      background: #2d3748;
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    footer .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    footer h3 {
+      margin-bottom: 1rem;
+    }
+    
+    footer a {
+      color: #a0aec0;
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      color: white;
+    }
+    
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+    
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #5a3e85;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+    /* Scroll Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Pulse Animation for Button */
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+      }
+      50% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+      }
+    }
+    
+    .btn-pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    /* Gradient Animation */
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-size: 200% 200%;
+      animation: gradient 15s ease infinite;
+    }
+    
+    /* Card Icon Animation */
+    .card-icon {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 1rem;
+      transition: transform 0.3s;
+    }
+    
+    .card:hover .card-icon {
+      transform: scale(1.2) rotate(5deg);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+      
+      nav ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      
+      nav ul.active {
+        max-height: 400px;
+      }
+      
+      nav ul li {
+        padding: 0.75rem 2rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      section h2 {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>🚀 hola! esto es una prueba</h1>
-    <p>Si ves esto, la parte básica ya funciona.</p>
-    <p><code>index.html</code> servido localmente</p>
-  </div>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="logo">Bioinfo4Women</div>
+      <div class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul id="nav-menu">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#research" class="nav-link">Research</a></li>
+        <li><a href="#team" class="nav-link">Team</a></li>
+        <li><a href="#publications" class="nav-link">Publications</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Bioinfo4Women</h1>
+    <p>Advancing women's health through bioinformatics research and innovation. Bridging the gap in gender-specific healthcare with cutting-edge computational approaches.</p>
+    <a href="#about" class="btn btn-pulse">Learn More</a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="fade-in">
+    <h2>About Us</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+      Bioinfo4Women is dedicated to leveraging bioinformatics and computational biology to address critical gaps in women's health research. We focus on developing innovative tools and methodologies to better understand gender-specific biological differences and improve healthcare outcomes for women.
+    </p>
+  </section>
+
+  <!-- Research Areas -->
+  <section id="research" class="fade-in">
+    <h2>Research Areas</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="card-icon">🧬</span>
+        <h3>Genomics</h3>
+        <p>Studying genetic variations and their impact on women's health, including sex-specific disease susceptibility and treatment response.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📊</span>
+        <h3>Data Analysis</h3>
+        <p>Developing advanced computational methods for analyzing large-scale biomedical datasets with a focus on gender differences.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔬</span>
+        <h3>Precision Medicine</h3>
+        <p>Creating personalized healthcare approaches that account for biological sex differences in disease presentation and treatment.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧠</span>
+        <h3>Systems Biology</h3>
+        <p>Integrating multi-omics data to understand complex biological systems and pathways relevant to women's health.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="fade-in">
+    <h2>Our Team</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+      Our multidisciplinary team brings together expertise in bioinformatics, computational biology, medicine, and data science. We are committed to promoting diversity in STEM and advancing research that benefits women's health globally.
+    </p>
+  </section>
+
+  <!-- Publications Section -->
+  <section id="publications" class="fade-in">
+    <h2>Publications & Resources</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+      Explore our latest research publications, tools, and resources. We are committed to open science and making our findings accessible to the research community and the public.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <h3>Contact Us</h3>
+      <p>Get in touch to learn more about our research or explore collaboration opportunities.</p>
+      <p style="margin-top: 2rem;">
+        <a href="mailto:contact@bioinfo4women.org">contact@bioinfo4women.org</a>
+      </p>
+      <p style="margin-top: 2rem; font-size: 0.875rem; color: #a0aec0;">
+        © 2025 Bioinfo4Women. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // ========================================
+    // 1. Smooth Scrolling for Navigation Links
+    // ========================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          
+          // Close mobile menu after clicking a link
+          const navMenu = document.getElementById('nav-menu');
+          const mobileMenu = document.getElementById('mobile-menu');
+          if (navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            mobileMenu.classList.remove('active');
+          }
+        }
+      });
+    });
+
+    // ========================================
+    // 2. Mobile Menu Toggle
+    // ========================================
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.getElementById('nav-menu');
+
+    mobileMenu.addEventListener('click', function() {
+      this.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const isClickInsideNav = event.target.closest('nav');
+      if (!isClickInsideNav && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      }
+    });
+
+    // ========================================
+    // 3. Scroll Animation Observer
+    // ========================================
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Optional: stop observing after animation triggers
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with fade-in class
+    document.querySelectorAll('.fade-in').forEach(element => {
+      observer.observe(element);
+    });
+
+    // ========================================
+    // 4. Active Nav Link on Scroll
+    // ========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function highlightNavOnScroll() {
+      let scrollPosition = window.scrollY + 100;
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          navLinks.forEach(link => {
+            link.style.color = '';
+            if (link.getAttribute('href') === '#' + sectionId) {
+              link.style.color = '#5a3e85';
+              link.style.fontWeight = '700';
+            } else {
+              link.style.fontWeight = '500';
+            }
+          });
+        }
+      });
+    }
+
+    window.addEventListener('scroll', highlightNavOnScroll);
+
+    // ========================================
+    // 5. Card Stagger Animation on Load
+    // ========================================
+    window.addEventListener('load', function() {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+          card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, 100 * index);
+      });
+    });
+
+    // ========================================
+    // 6. Console Welcome Message (Fun Easter Egg)
+    // ========================================
+    console.log('%c🧬 Welcome to Bioinfo4Women! 🧬', 'color: #667eea; font-size: 20px; font-weight: bold;');
+    console.log('%cInterested in bioinformatics for women\'s health? Join us!', 'color: #764ba2; font-size: 14px;');
+  </script>
 </body>
 </html>
