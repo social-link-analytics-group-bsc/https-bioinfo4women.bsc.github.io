@@ -385,6 +385,120 @@
       align-items: center;
       justify-content: center;
       transition: none;
+      position: relative;
+    }
+    
+    /* Small decorative blobs surrounding main blobs */
+    .draggable-node::before,
+    .draggable-node::after {
+      content: '';
+      position: absolute;
+      background: rgba(102, 217, 255, 0.15);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+      animation: blobPulse 3s ease-in-out infinite;
+    }
+    
+    /* Alternate purple for some blobs */
+    .draggable-node:nth-child(2)::before,
+    .draggable-node:nth-child(2)::after,
+    .draggable-node:nth-child(4)::before,
+    .draggable-node:nth-child(4)::after {
+      background: rgba(200, 150, 255, 0.15);
+    }
+    
+    /* First decorative blob - different sizes and positions for each node */
+    .draggable-node:nth-child(1)::before {
+      width: 60px;
+      height: 80px;
+      top: -30px;
+      left: -20px;
+      border-radius: 60% 40% 40% 60% / 50% 50% 50% 50%;
+      animation-delay: 0.5s;
+    }
+    
+    .draggable-node:nth-child(1)::after {
+      width: 50px;
+      height: 70px;
+      bottom: -25px;
+      right: -15px;
+      border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
+      animation-delay: 1.5s;
+    }
+    
+    .draggable-node:nth-child(2)::before {
+      width: 70px;
+      height: 55px;
+      top: -20px;
+      right: -30px;
+      border-radius: 50% 50% 40% 60% / 40% 60% 40% 60%;
+      animation-delay: 1s;
+    }
+    
+    .draggable-node:nth-child(2)::after {
+      width: 45px;
+      height: 65px;
+      bottom: -35px;
+      left: -10px;
+      border-radius: 45% 55% 55% 45% / 55% 45% 55% 45%;
+      animation-delay: 2s;
+    }
+    
+    .draggable-node:nth-child(3)::before {
+      width: 55px;
+      height: 75px;
+      top: -40px;
+      left: -25px;
+      border-radius: 60% 40% 40% 60% / 50% 50% 50% 50%;
+      animation-delay: 1.5s;
+    }
+    
+    .draggable-node:nth-child(3)::after {
+      width: 65px;
+      height: 50px;
+      bottom: -20px;
+      right: -20px;
+      border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
+      animation-delay: 0.5s;
+    }
+    
+    .draggable-node:nth-child(4)::before {
+      width: 50px;
+      height: 70px;
+      top: -25px;
+      right: -15px;
+      border-radius: 50% 50% 40% 60% / 40% 60% 40% 60%;
+      animation-delay: 2s;
+    }
+    
+    .draggable-node:nth-child(4)::after {
+      width: 60px;
+      height: 80px;
+      bottom: -30px;
+      left: -20px;
+      border-radius: 45% 55% 55% 45% / 55% 45% 55% 45%;
+      animation-delay: 1s;
+    }
+    
+    /* Additional small decorative blobs created via JavaScript */
+    .small-decorative-blob {
+      position: absolute;
+      background: rgba(102, 217, 255, 0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      pointer-events: none;
+      z-index: 1;
+      animation: blobPulse 4s ease-in-out infinite;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Alternate purple for some small blobs */
+    .draggable-node:nth-child(2) .small-decorative-blob,
+    .draggable-node:nth-child(4) .small-decorative-blob {
+      background: rgba(200, 150, 255, 0.12);
     }
     
     /* Spaced out arrangement - titles spread across section */
@@ -430,9 +544,7 @@
     }
     
     .draggable-node .card-icon {
-      font-size: 4rem;
-      margin: 0;
-      transition: none;
+      display: none;
     }
     
     /* Pulsing animation for blobs */
@@ -476,7 +588,7 @@
       margin: 0;
       font-size: 8rem;
       font-weight: 900;
-      color: rgba(29, 29, 31, 0.15);
+      color: rgba(29, 29, 31, 0.3);
       text-align: left;
       white-space: nowrap;
       transition: none;
@@ -871,6 +983,15 @@
         right: auto !important;
       }
       
+      .draggable-node::before,
+      .draggable-node::after {
+        display: none;
+      }
+      
+      .small-decorative-blob {
+        display: none;
+      }
+      
       .draggable-node {
         width: 90%;
         position: relative !important;
@@ -975,7 +1096,6 @@
       <div class="network-nodes" id="network-nodes">
         <div class="draggable-node" data-node="0">
           <div class="card">
-            <span class="card-icon">🧬</span>
           </div>
           <h3>Genomics</h3>
           <div class="description-blob">
@@ -984,7 +1104,6 @@
         </div>
         <div class="draggable-node" data-node="1">
           <div class="card">
-            <span class="card-icon">📊</span>
           </div>
           <h3>Data Analysis</h3>
           <div class="description-blob">
@@ -993,7 +1112,6 @@
         </div>
         <div class="draggable-node" data-node="2">
           <div class="card">
-            <span class="card-icon">🔬</span>
           </div>
           <h3>Precision Medicine</h3>
           <div class="description-blob">
@@ -1001,8 +1119,7 @@
           </div>
         </div>
         <div class="draggable-node" data-node="3">
-  <div class="card">
-            <span class="card-icon">🧠</span>
+          <div class="card">
           </div>
           <h3>Systems Biology</h3>
           <div class="description-blob">
@@ -1218,6 +1335,44 @@
       // Initialize nodes with scale-0
       nodes.forEach(node => {
         node.classList.add('scale-0');
+        
+        // Create additional small decorative blobs
+        const numSmallBlobs = 3;
+        for (let i = 0; i < numSmallBlobs; i++) {
+          const smallBlob = document.createElement('div');
+          smallBlob.className = 'small-decorative-blob';
+          
+          // Random size between 30-70px
+          const size = 30 + Math.random() * 40;
+          const width = size;
+          const height = size * (0.7 + Math.random() * 0.6); // Vary height
+          
+          // Random position around the main blob
+          const angle = (Math.PI * 2 * i) / numSmallBlobs + Math.random() * 0.5;
+          const distance = 120 + Math.random() * 60;
+          const x = Math.cos(angle) * distance;
+          const y = Math.sin(angle) * distance;
+          
+          smallBlob.style.width = `${width}px`;
+          smallBlob.style.height = `${height}px`;
+          smallBlob.style.left = `calc(50% + ${x}px)`;
+          smallBlob.style.top = `calc(50% + ${y}px)`;
+          smallBlob.style.transform = 'translate(-50%, -50%)';
+          
+          // Random organic shape
+          const shapes = [
+            '60% 40% 40% 60% / 50% 50% 50% 50%',
+            '40% 60% 60% 40% / 60% 40% 60% 40%',
+            '50% 50% 40% 60% / 40% 60% 40% 60%',
+            '45% 55% 55% 45% / 55% 45% 55% 45%'
+          ];
+          smallBlob.style.borderRadius = shapes[Math.floor(Math.random() * shapes.length)];
+          
+          // Random animation delay
+          smallBlob.style.animationDelay = `${Math.random() * 2}s`;
+          
+          node.appendChild(smallBlob);
+        }
       });
       
       // Store node positions and dragging state
