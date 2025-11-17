@@ -12,46 +12,91 @@
     }
     
     body {
-      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       color: #2d3748;
       line-height: 1.6;
+      background: #f5f5f7;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
     }
     
     /* Navigation */
     nav {
-      background: #ffffff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      position: sticky;
+      background: none;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
+      transition: padding 0.3s ease;
+      box-shadow: none;
+      border: none;
+    }
+    
+    nav.scrolled {
+      padding: 0;
+      background: none;
+      box-shadow: none;
     }
     
     nav .container {
-      max-width: 1200px;
+      max-width: 100%;
       margin: 0 auto;
-      padding: 1rem 2rem;
+      padding: 1.5rem 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: padding 0.3s ease;
+      background: none;
+    }
+    
+    nav.scrolled .container {
+      padding: 0.75rem 4rem;
+      background: none;
     }
     
     nav .logo {
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       font-weight: 700;
-      color: #5a3e85;
+      color: #1d1d1f;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.4s ease;
+    }
+    
+    nav.show-logo .logo {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    nav.scrolled .logo {
+      font-size: 1.35rem;
     }
     
     nav ul {
       list-style: none;
       display: flex;
       gap: 2rem;
+      transition: all 0.3s ease;
+      background: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    nav li {
+      margin: 0;
+      padding: 0;
+      background: none;
     }
     
     nav a {
       text-decoration: none;
-      color: #4a5568;
+      color: #1d1d1f;
       font-weight: 500;
       transition: color 0.3s;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+      background: none;
     }
     
     nav a:hover {
@@ -60,108 +105,547 @@
     
     /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-size: 200% 200%;
+      animation: gradient 15s ease infinite;
       color: white;
-      padding: 6rem 2rem;
-      text-align: center;
+      padding: 0;
+      margin: 0;
+      min-height: 100vh;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
     }
     
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      transition: opacity 2.5s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    /* Liquid Animation Keyframes */
+    @keyframes liquidFlow1 {
+      0%, 100% {
+        background-position: 0% 50%, 100% 50%, 50% 0%;
+        background-size: 80% 80%, 60% 60%, 100% 100%;
+      }
+      33% {
+        background-position: 100% 30%, 0% 70%, 30% 100%;
+        background-size: 70% 90%, 80% 50%, 90% 80%;
+      }
+      66% {
+        background-position: 30% 100%, 70% 0%, 100% 50%;
+        background-size: 90% 70%, 50% 80%, 80% 90%;
+      }
+    }
+    
+    @keyframes liquidFlow2 {
+      0%, 100% {
+        background-position: 50% 50%, 80% 20%, 20% 80%;
+        background-size: 70% 70%, 90% 60%, 60% 90%;
+      }
+      33% {
+        background-position: 20% 80%, 50% 50%, 80% 20%;
+        background-size: 60% 80%, 80% 70%, 70% 60%;
+      }
+      66% {
+        background-position: 80% 20%, 20% 80%, 50% 50%;
+        background-size: 80% 60%, 60% 80%, 70% 70%;
+      }
+    }
+    
+    @keyframes liquidFlow3 {
+      0%, 100% {
+        background-position: 100% 0%, 0% 100%, 50% 50%;
+        background-size: 85% 75%, 75% 85%, 65% 65%;
+      }
+      33% {
+        background-position: 0% 50%, 100% 50%, 50% 0%;
+        background-size: 75% 65%, 65% 75%, 85% 85%;
+      }
+      66% {
+        background-position: 50% 100%, 50% 0%, 0% 50%;
+        background-size: 65% 85%, 85% 65%, 75% 75%;
+      }
+    }
+    
+    .hero.hover-bioinfo::before {
+      opacity: 1;
+      background: 
+        radial-gradient(ellipse 120% 40% at 30% 40%, rgba(0, 212, 255, 0.9) 0%, rgba(0, 212, 255, 0.4) 30%, transparent 60%),
+        radial-gradient(ellipse 40% 150% at 70% 60%, rgba(0, 188, 212, 0.8) 0%, rgba(0, 188, 212, 0.3) 35%, transparent 65%),
+        radial-gradient(ellipse 180% 60% at 50% 50%, rgba(100, 200, 255, 0.7) 0%, rgba(100, 200, 255, 0.3) 25%, transparent 50%),
+        radial-gradient(ellipse 50% 200% at 20% 80%, rgba(50, 220, 255, 0.6) 0%, transparent 55%),
+        radial-gradient(ellipse 200% 80% at 80% 30%, rgba(0, 255, 255, 0.5) 0%, transparent 45%),
+        linear-gradient(135deg, #ffffff 0%, #e0f7ff 100%);
+      animation: liquidFlow1 8s ease-in-out infinite;
+      filter: blur(40px);
+    }
+    
+    .hero.hover-4::before {
+      opacity: 1;
+      background: 
+        radial-gradient(ellipse 130% 45% at 40% 30%, rgba(124, 77, 255, 0.9) 0%, rgba(124, 77, 255, 0.4) 30%, transparent 60%),
+        radial-gradient(ellipse 45% 160% at 60% 70%, rgba(83, 109, 254, 0.8) 0%, rgba(83, 109, 254, 0.3) 35%, transparent 65%),
+        radial-gradient(ellipse 170% 55% at 50% 50%, rgba(150, 100, 255, 0.7) 0%, rgba(150, 100, 255, 0.3) 25%, transparent 50%),
+        radial-gradient(ellipse 60% 190% at 80% 20%, rgba(100, 90, 255, 0.6) 0%, transparent 55%),
+        radial-gradient(ellipse 190% 70% at 15% 65%, rgba(110, 100, 255, 0.5) 0%, transparent 45%),
+        linear-gradient(135deg, #e8e0ff 0%, #f0e8ff 100%);
+      animation: liquidFlow2 8s ease-in-out infinite;
+      filter: blur(40px);
+    }
+    
+    .hero.hover-women::before {
+      opacity: 1;
+      background: 
+        radial-gradient(ellipse 110% 50% at 60% 40%, rgba(156, 39, 176, 0.9) 0%, rgba(156, 39, 176, 0.4) 30%, transparent 60%),
+        radial-gradient(ellipse 50% 170% at 40% 60%, rgba(103, 58, 183, 0.8) 0%, rgba(103, 58, 183, 0.3) 35%, transparent 65%),
+        radial-gradient(ellipse 190% 65% at 50% 50%, rgba(180, 80, 200, 0.7) 0%, rgba(180, 80, 200, 0.3) 25%, transparent 50%),
+        radial-gradient(ellipse 45% 210% at 15% 70%, rgba(140, 50, 180, 0.6) 0%, transparent 55%),
+        radial-gradient(ellipse 210% 75% at 85% 25%, rgba(170, 60, 190, 0.5) 0%, transparent 45%),
+        linear-gradient(135deg, #f3e5f5 0%, #ede7f6 100%);
+      animation: liquidFlow3 8s ease-in-out infinite;
+      filter: blur(40px);
+    }
+    
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1600px;
+      padding: 0 4rem;
+      gap: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-title {
+      text-align: right;
+      line-height: 0.85;
+    }
+    
+    .hero-title .title-line {
+      display: block;
+      font-size: 12vw;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: #1d1d1f;
+      text-transform: lowercase;
+      margin: 0;
+      cursor: pointer;
+      transition: transform 0.3s ease, color 0.3s ease;
+      position: relative;
+    }
+    
+    .hero-title .title-line:hover {
+      transform: translateX(-10px);
+      color: rgba(29, 29, 31, 0.8);
+    }
+    
+    .hero-text-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: flex-start;
     }
     
     .hero p {
-      font-size: 1.25rem;
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      opacity: 0.95;
+      font-size: 1.5rem;
+      line-height: 1.6;
+      margin: 0;
+      text-align: left;
+      color: #1d1d1f;
+      font-weight: 500;
     }
     
     .btn {
       display: inline-block;
-      padding: 0.875rem 2rem;
-      background: white;
-      color: #5a3e85;
+      padding: 0.75rem 2rem;
+      background: transparent;
+      color: #1d1d1f;
       text-decoration: none;
-      border-radius: 6px;
-      font-weight: 600;
-      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 30px;
+      border: 1.5px solid rgba(29, 29, 31, 0.3);
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
     }
     
     .btn:hover {
+      border-color: #1d1d1f;
+      background: rgba(29, 29, 31, 0.05);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
     
     /* Sections */
     section {
-      padding: 4rem 2rem;
-      max-width: 1200px;
+      padding: 6rem 4rem;
+      max-width: 100%;
       margin: 0 auto;
     }
     
     section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: #5a3e85;
+      font-size: 3rem;
+      margin-bottom: 3rem;
+      color: #1d1d1f;
       text-align: center;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
     
     section p {
-      font-size: 1.125rem;
+      font-size: 1.25rem;
       margin-bottom: 1.5rem;
       color: #4a5568;
     }
     
+    
     /* Grid Layout */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+      margin-top: 4rem;
+      max-width: 1600px;
+      margin-left: auto;
+      margin-right: auto;
     }
     
+    /* Research Section Title - at bottom */
+    .network-container h2 {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      margin: 0;
+      pointer-events: none;
+      font-size: 3rem;
+      color: #1d1d1f;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    
+    /* Network Container */
+    .network-container {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      height: 1000px;
+      margin: 4rem auto 0;
+    }
+    
+    #network-canvas {
+      display: none;
+    }
+    
+    .network-nodes {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    
+    .draggable-node {
+      position: absolute;
+      cursor: grab;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      will-change: transform;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 2;
+    }
+    
+    .draggable-node:active {
+      cursor: grabbing;
+    }
+    
+    .draggable-node .card {
+      width: 200px;
+      height: 200px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: none;
+    }
+    
+    /* Spaced out arrangement - titles spread across section */
+    .draggable-node:nth-child(1) {
+      top: 15%;
+      left: 10%;
+    }
+    
+    .draggable-node:nth-child(2) {
+      top: 25%;
+      right: 15%;
+      left: auto;
+    }
+    
+    .draggable-node:nth-child(3) {
+      top: 45%;
+      left: 20%;
+    }
+    
+    .draggable-node:nth-child(4) {
+      top: 55%;
+      right: 10%;
+      left: auto;
+    }
+    
+    
+    /* Scroll animation - initial state */
+    .draggable-node {
+      opacity: 0;
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .draggable-node.scale-0 {
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    
+    .draggable-node.scale-1 {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .draggable-node.visible {
+      opacity: 1;
+    }
+    
+    .draggable-node .card-icon {
+      font-size: 4rem;
+      margin: 0;
+      transition: none;
+    }
+    
+    /* Pulsing animation for blobs */
+    @keyframes blobPulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.08);
+      }
+    }
+    
+    .draggable-node .card {
+      animation: blobPulse 4s ease-in-out infinite;
+      transform-origin: center center;
+    }
+    
+    /* Stagger the animation for each blob */
+    .draggable-node:nth-child(1) .card {
+      animation-delay: 0s;
+    }
+    
+    .draggable-node:nth-child(2) .card {
+      animation-delay: 1s;
+    }
+    
+    .draggable-node:nth-child(3) .card {
+      animation-delay: 2s;
+    }
+    
+    .draggable-node:nth-child(4) .card {
+      animation-delay: 3s;
+    }
+    
+    /* Pause animation on hover */
+    .draggable-node:hover .card {
+      animation-play-state: paused;
+    }
+    
+    .draggable-node h3 {
+      margin: 0;
+      font-size: 8rem;
+      font-weight: 900;
+      color: rgba(29, 29, 31, 0.15);
+      text-align: left;
+      white-space: nowrap;
+      transition: none;
+      position: absolute;
+      z-index: 0;
+      pointer-events: none;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      width: auto;
+    }
+    
+    /* Titles will be positioned by JavaScript */
+    
+    /* Description blob - appears on hover */
+    .draggable-node .description-blob {
+      position: absolute;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      padding: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 
+                  0 2px 8px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      overflow: hidden;
+      z-index: 20;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+    
+    /* Organic shapes for description blobs */
+    .draggable-node:nth-child(1) .description-blob {
+      border-radius: 50% 50% 40% 60% / 40% 60% 40% 60%;
+    }
+    
+    .draggable-node:nth-child(2) .description-blob {
+      border-radius: 45% 55% 55% 45% / 55% 45% 55% 45%;
+    }
+    
+    .draggable-node:nth-child(3) .description-blob {
+      border-radius: 60% 40% 40% 60% / 50% 50% 50% 50%;
+    }
+    
+    .draggable-node:nth-child(4) .description-blob {
+      border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
+    }
+    
+    .draggable-node .description-blob p {
+      margin: 0;
+      padding: 0;
+      font-size: 1rem;
+      color: #4a5568;
+      line-height: 1.6;
+      opacity: 0;
+      transition: opacity 0.3s ease 0.2s;
+    }
+    
+    .draggable-node:hover .description-blob {
+      width: 350px;
+      height: auto;
+      min-height: 200px;
+      padding: 2.5rem;
+      opacity: 1;
+    }
+    
+    .draggable-node:hover .description-blob p {
+      opacity: 1;
+    }
+    
+    /* Position description blob next to the hovered blob */
+    .draggable-node:nth-child(1):hover .description-blob {
+      top: 50%;
+      left: calc(100% + 30px);
+      transform: translateY(-50%);
+    }
+    
+    .draggable-node:nth-child(2):hover .description-blob {
+      top: 50%;
+      right: calc(100% + 30px);
+      left: auto;
+      transform: translateY(-50%);
+    }
+    
+    .draggable-node:nth-child(3):hover .description-blob {
+      top: 50%;
+      left: calc(100% + 30px);
+      transform: translateY(-50%);
+    }
+    
+    .draggable-node:nth-child(4):hover .description-blob {
+      top: 50%;
+      right: calc(100% + 30px);
+      left: auto;
+      transform: translateY(-50%);
+    }
+    
+    
+    /* macOS Style Floating Cards */
     .card {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 
+                  0 2px 8px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.8);
     }
     
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    .draggable-node .card {
+      background: rgba(255, 255, 255, 0.01) !important;
+    }
+    
+    .card:not(.draggable-node) {
+      padding: 3rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card:not(.draggable-node):hover {
+      transform: translateY(-8px) scale(1.02) rotate(-1deg);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12),
+                  0 8px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(90, 62, 133, 0.3);
+    }
+    
+    .draggable-node:nth-child(1) .card {
+      border-radius: 60% 40% 40% 60% / 50% 50% 50% 50%;
+    }
+    
+    .draggable-node:nth-child(2) .card {
+      border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
+    }
+    
+    .draggable-node:nth-child(3) .card {
+      border-radius: 50% 50% 40% 60% / 40% 60% 40% 60%;
+    }
+    
+    .draggable-node:nth-child(4) .card {
+      border-radius: 45% 55% 55% 45% / 55% 45% 55% 45%;
     }
     
     .card h3 {
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       margin-bottom: 1rem;
-      color: #5a3e85;
+      color: #1d1d1f;
+      font-weight: 600;
     }
     
     .card p {
-      font-size: 1rem;
-      color: #718096;
+      font-size: 1.125rem;
+      color: #6e6e73;
+      line-height: 1.7;
     }
     
     /* Background alternating */
     section:nth-child(even) {
-      background: #f7fafc;
+      background: rgba(247, 250, 252, 0.5);
     }
     
     /* Footer */
     footer {
       background: #2d3748;
       color: white;
-      padding: 3rem 2rem;
+      padding: 4rem 4rem;
       text-align: center;
     }
     
     footer .container {
-      max-width: 1200px;
+      max-width: 100%;
       margin: 0 auto;
     }
     
@@ -184,14 +668,16 @@
       flex-direction: column;
       cursor: pointer;
       gap: 4px;
+      transition: all 0.3s ease;
     }
     
     .menu-toggle span {
       width: 25px;
       height: 3px;
-      background: #5a3e85;
+      background: #1d1d1f;
       transition: all 0.3s;
       border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
     }
     
     .menu-toggle.active span:nth-child(1) {
@@ -252,21 +738,39 @@
     }
     
     /* Card Icon Animation */
-    .card-icon {
-      font-size: 2.5rem;
+    .card:not(.draggable-node) .card-icon {
+      font-size: 3rem;
       display: block;
-      margin-bottom: 1rem;
-      transition: transform 0.3s;
+      margin-bottom: 1.5rem;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
-    .card:hover .card-icon {
-      transform: scale(1.2) rotate(5deg);
+    .card:not(.draggable-node):hover .card-icon {
+      transform: scale(1.15) rotate(5deg);
     }
     
     /* Responsive */
     @media (max-width: 768px) {
+      nav .logo {
+        font-size: 1.5rem;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      nav.scrolled .logo {
+        font-size: 1.25rem;
+      }
+      
       .menu-toggle {
         display: flex;
+      }
+      
+      nav .container {
+        padding: 1rem 2rem;
+      }
+      
+      nav.scrolled .container {
+        padding: 0.75rem 2rem;
       }
       
       nav ul {
@@ -274,7 +778,8 @@
         top: 100%;
         left: 0;
         right: 0;
-        background: white;
+        background: rgba(102, 126, 234, 0.95);
+        backdrop-filter: blur(20px);
         flex-direction: column;
         gap: 0;
         padding: 1rem 0;
@@ -293,16 +798,129 @@
         border-bottom: 1px solid #e2e8f0;
       }
       
-      .hero h1 {
-        font-size: 2rem;
+      nav ul a,
+      nav.scrolled ul a {
+        color: #ffffff;
+        text-shadow: none;
+      }
+      
+      .hero {
+        padding: 0;
+        min-height: 100vh;
+      }
+      
+      .hero-content {
+        flex-direction: column;
+        gap: 3rem;
+        padding: 0 2rem;
+      }
+      
+      .hero-title {
+        text-align: center;
+      }
+      
+      .hero-title .title-line {
+        font-size: 18vw;
+      }
+      
+      .hero-text-content {
+        align-items: center;
       }
       
       .hero p {
-        font-size: 1rem;
+        font-size: 1.125rem;
+        text-align: center;
+      }
+      
+      section {
+        padding: 4rem 2rem;
       }
       
       section h2 {
         font-size: 2rem;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .card {
+        padding: 2rem;
+      }
+      
+      .network-container {
+        height: 1400px;
+      }
+      
+      .network-container h2 {
+        position: relative;
+        transform: none;
+        margin-bottom: 2rem;
+        bottom: auto;
+      }
+      
+      .draggable-node h3 {
+        position: relative !important;
+        font-size: 3rem !important;
+        color: rgba(29, 29, 31, 0.4) !important;
+        margin-top: 1rem !important;
+        transform: none !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+      }
+      
+      .draggable-node {
+        width: 90%;
+        position: relative !important;
+        margin-bottom: 3rem;
+        left: 5% !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        cursor: default;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      
+      .draggable-node.scale-0,
+      .draggable-node.scale-1 {
+        transform: none !important;
+      }
+      
+      .draggable-node .card {
+        width: 200px !important;
+        height: 200px !important;
+        margin: 0 auto;
+      }
+      
+      .draggable-node:nth-child(1),
+      .draggable-node:nth-child(2),
+      .draggable-node:nth-child(3),
+      .draggable-node:nth-child(4) {
+        position: relative !important;
+      }
+      
+      .draggable-node .description-blob {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        opacity: 1 !important;
+        padding: 2rem !important;
+        margin-top: 1rem;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+      }
+      
+      .draggable-node .description-blob p {
+        opacity: 1 !important;
+      }
+      
+      #network-canvas {
+        display: none;
       }
     }
   </style>
@@ -329,9 +947,17 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1>Bioinfo4Women</h1>
-    <p>Advancing women's health through bioinformatics research and innovation. Bridging the gap in gender-specific healthcare with cutting-edge computational approaches.</p>
-    <a href="#about" class="btn btn-pulse">Learn More</a>
+    <div class="hero-content">
+      <div class="hero-title">
+        <span class="title-line" data-word="bioinfo">bioinfo</span>
+        <span class="title-line" data-word="4">4</span>
+        <span class="title-line" data-word="women">women</span>
+      </div>
+      <div class="hero-text-content">
+        <p>Advancing women's health through bioinformatics research and innovation. Bridging the gap in gender-specific healthcare with cutting-edge computational approaches.</p>
+        <a href="#about" class="btn">Learn More</a>
+      </div>
+    </div>
   </section>
 
   <!-- About Section -->
@@ -344,27 +970,45 @@
 
   <!-- Research Areas -->
   <section id="research" class="fade-in">
-    <h2>Research Areas</h2>
-    <div class="grid">
-      <div class="card">
-        <span class="card-icon">🧬</span>
-        <h3>Genomics</h3>
-        <p>Studying genetic variations and their impact on women's health, including sex-specific disease susceptibility and treatment response.</p>
-      </div>
-      <div class="card">
-        <span class="card-icon">📊</span>
-        <h3>Data Analysis</h3>
-        <p>Developing advanced computational methods for analyzing large-scale biomedical datasets with a focus on gender differences.</p>
-      </div>
-      <div class="card">
-        <span class="card-icon">🔬</span>
-        <h3>Precision Medicine</h3>
-        <p>Creating personalized healthcare approaches that account for biological sex differences in disease presentation and treatment.</p>
-      </div>
-      <div class="card">
-        <span class="card-icon">🧠</span>
-        <h3>Systems Biology</h3>
-        <p>Integrating multi-omics data to understand complex biological systems and pathways relevant to women's health.</p>
+    <div class="network-container">
+      <h2>Research Areas</h2>
+      <div class="network-nodes" id="network-nodes">
+        <div class="draggable-node" data-node="0">
+          <div class="card">
+            <span class="card-icon">🧬</span>
+          </div>
+          <h3>Genomics</h3>
+          <div class="description-blob">
+            <p>Studying genetic variations and their impact on women's health, including sex-specific disease susceptibility and treatment response.</p>
+          </div>
+        </div>
+        <div class="draggable-node" data-node="1">
+          <div class="card">
+            <span class="card-icon">📊</span>
+          </div>
+          <h3>Data Analysis</h3>
+          <div class="description-blob">
+            <p>Developing advanced computational methods for analyzing large-scale biomedical datasets with a focus on gender differences.</p>
+          </div>
+        </div>
+        <div class="draggable-node" data-node="2">
+          <div class="card">
+            <span class="card-icon">🔬</span>
+          </div>
+          <h3>Precision Medicine</h3>
+          <div class="description-blob">
+            <p>Creating personalized healthcare approaches that account for biological sex differences in disease presentation and treatment.</p>
+          </div>
+        </div>
+        <div class="draggable-node" data-node="3">
+  <div class="card">
+            <span class="card-icon">🧠</span>
+          </div>
+          <h3>Systems Biology</h3>
+          <div class="description-blob">
+            <p>Integrating multi-omics data to understand complex biological systems and pathways relevant to women's health.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -396,7 +1040,7 @@
       <p style="margin-top: 2rem; font-size: 0.875rem; color: #a0aec0;">
         © 2025 Bioinfo4Women. All rights reserved.
       </p>
-    </div>
+  </div>
   </footer>
 
   <script>
@@ -449,7 +1093,35 @@
     });
 
     // ========================================
-    // 3. Scroll Animation Observer
+    // 3. Navigation State on Scroll & Show Logo After Hero
+    // ========================================
+    const nav = document.querySelector('nav');
+    const hero = document.querySelector('.hero');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', function() {
+      const currentScroll = window.pageYOffset;
+      const heroHeight = hero.offsetHeight;
+      
+      // Shrink nav after 50px
+      if (currentScroll > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+      
+      // Show logo only after scrolling past hero section
+      if (currentScroll > heroHeight - 100) {
+        nav.classList.add('show-logo');
+      } else {
+        nav.classList.remove('show-logo');
+      }
+      
+      lastScroll = currentScroll;
+    });
+
+    // ========================================
+    // 4. Scroll Animation Observer
     // ========================================
     const observerOptions = {
       threshold: 0.1,
@@ -472,7 +1144,7 @@
     });
 
     // ========================================
-    // 4. Active Nav Link on Scroll
+    // 5. Active Nav Link on Scroll
     // ========================================
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -502,7 +1174,7 @@
     window.addEventListener('scroll', highlightNavOnScroll);
 
     // ========================================
-    // 5. Card Stagger Animation on Load
+    // 6. Card Stagger Animation on Load
     // ========================================
     window.addEventListener('load', function() {
       const cards = document.querySelectorAll('.card');
@@ -519,7 +1191,191 @@
     });
 
     // ========================================
-    // 6. Console Welcome Message (Fun Easter Egg)
+    // 7. Interactive Hero Title Background Change
+    // ========================================
+    const titleLines = document.querySelectorAll('.title-line');
+
+    titleLines.forEach(line => {
+      line.addEventListener('mouseenter', function() {
+        const word = this.getAttribute('data-word');
+        
+        // Remove all hover classes first
+        hero.classList.remove('hover-bioinfo', 'hover-4', 'hover-women');
+        
+        // Add the new hover class and keep it locked
+        hero.classList.add(`hover-${word}`);
+      });
+    });
+
+    // ========================================
+    // 8. Draggable Network Nodes with Inside-Circle Detection & Scroll Animation
+    // ========================================
+    const nodes = document.querySelectorAll('.draggable-node');
+    const researchSection = document.getElementById('research');
+    const networkContainer = document.querySelector('.network-container');
+    
+    if (nodes.length > 0 && networkContainer) {
+      // Initialize nodes with scale-0
+      nodes.forEach(node => {
+        node.classList.add('scale-0');
+      });
+      
+      // Store node positions and dragging state
+      let draggedNode = null;
+      let offset = { x: 0, y: 0 };
+      const nodeScales = new Map(); // Store scale for each node
+      
+      // Initialize scales
+      nodes.forEach(node => {
+        nodeScales.set(node, 0.5);
+      });
+      
+      // Position titles to match initial blob positions
+      function positionTitles() {
+        const titlePositions = [
+          { top: '15%', left: '10%', right: 'auto' },
+          { top: '25%', left: 'auto', right: '15%' },
+          { top: '45%', left: '20%', right: 'auto' },
+          { top: '55%', left: 'auto', right: '10%' }
+        ];
+        
+        nodes.forEach((node, index) => {
+          const title = node.querySelector('h3');
+          if (title && titlePositions[index]) {
+            const pos = titlePositions[index];
+            // Position relative to the node's initial position
+            title.style.position = 'absolute';
+            title.style.top = '50%';
+            title.style.left = '50%';
+            title.style.transform = 'translate(-50%, -50%)';
+            
+            // Calculate offset to match container position
+            const containerRect = networkContainer.getBoundingClientRect();
+            const containerWidth = networkContainer.offsetWidth;
+            const containerHeight = networkContainer.offsetHeight;
+            const nodeRect = node.getBoundingClientRect();
+            
+            let offsetX = 0, offsetY = 0;
+            
+            if (pos.left !== 'auto') {
+              const targetLeft = containerWidth * parseFloat(pos.left) / 100;
+              const currentLeft = nodeRect.left - containerRect.left + nodeRect.width / 2;
+              offsetX = targetLeft - currentLeft;
+            } else if (pos.right !== 'auto') {
+              const targetRight = containerWidth * parseFloat(pos.right) / 100;
+              const currentRight = containerRect.right - nodeRect.right + nodeRect.width / 2;
+              offsetX = currentRight - targetRight;
+            }
+            
+            if (pos.top) {
+              const targetTop = containerHeight * parseFloat(pos.top) / 100;
+              const currentTop = nodeRect.top - containerRect.top + nodeRect.height / 2;
+              offsetY = targetTop - currentTop;
+            }
+            
+            title.style.transform = `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px))`;
+          }
+        });
+      }
+      
+      // Position titles after a short delay to ensure layout is ready
+      setTimeout(positionTitles, 100);
+      window.addEventListener('resize', () => setTimeout(positionTitles, 100));
+      
+      // Mouse down event - start dragging
+      nodes.forEach(node => {
+        node.addEventListener('mousedown', (e) => {
+          draggedNode = node;
+          const rect = node.getBoundingClientRect();
+          offset.x = e.clientX - rect.left;
+          offset.y = e.clientY - rect.top;
+          e.preventDefault();
+        });
+      });
+      
+      // Mouse move event - update position
+      document.addEventListener('mousemove', (e) => {
+        if (draggedNode) {
+          const container = draggedNode.closest('.network-container');
+          const containerRect = container.getBoundingClientRect();
+          const x = e.clientX - containerRect.left;
+          const y = e.clientY - containerRect.top;
+          
+          draggedNode.style.left = `${x}px`;
+          draggedNode.style.top = `${y}px`;
+          draggedNode.style.right = 'auto';
+          draggedNode.style.bottom = 'auto';
+          
+          // Preserve scale from scroll animation
+          const currentScale = nodeScales.get(draggedNode) || 1;
+          draggedNode.style.transform = `translate(-50%, -50%) scale(${currentScale})`;
+        }
+      });
+      
+      // Mouse up event - stop dragging
+      document.addEventListener('mouseup', () => {
+        if (draggedNode) {
+          draggedNode = null;
+        }
+      });
+      
+      // Scroll animation for blobs
+      function handleScrollAnimation() {
+        if (!researchSection) return;
+        
+        const sectionRect = researchSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const sectionTop = sectionRect.top;
+        const sectionHeight = sectionRect.height;
+        
+        // Calculate scroll progress (0 to 1)
+        let scrollProgress = 0;
+        if (sectionTop < windowHeight && sectionTop > -sectionHeight) {
+          scrollProgress = 1 - (sectionTop / (windowHeight + sectionHeight));
+          scrollProgress = Math.max(0, Math.min(1, scrollProgress));
+        }
+        
+        nodes.forEach((node, index) => {
+          // Stagger animation for each blob
+          const delay = index * 0.1;
+          const adjustedProgress = Math.max(0, (scrollProgress - delay) / (1 - delay));
+          
+          if (adjustedProgress > 0) {
+            node.classList.add('visible');
+            node.classList.remove('scale-0');
+            node.classList.add('scale-1');
+            
+            // Scale based on scroll progress
+            const scale = 0.5 + (adjustedProgress * 0.5);
+            nodeScales.set(node, scale);
+            
+            // Only update transform if not being dragged
+            if (draggedNode !== node) {
+              node.style.transform = `translate(-50%, -50%) scale(${scale})`;
+            }
+          } else {
+            node.classList.remove('visible');
+            node.classList.add('scale-0');
+            node.classList.remove('scale-1');
+            nodeScales.set(node, 0.5);
+            
+            if (draggedNode !== node) {
+              node.style.transform = `translate(-50%, -50%) scale(0.5)`;
+            }
+          }
+        });
+      }
+      
+      // Initial check
+      handleScrollAnimation();
+      
+      // Check on scroll
+      window.addEventListener('scroll', handleScrollAnimation);
+      window.addEventListener('resize', handleScrollAnimation);
+    }
+
+    // ========================================
+    // 9. Console Welcome Message (Fun Easter Egg)
     // ========================================
     console.log('%c🧬 Welcome to Bioinfo4Women! 🧬', 'color: #667eea; font-size: 20px; font-weight: bold;');
     console.log('%cInterested in bioinformatics for women\'s health? Join us!', 'color: #764ba2; font-size: 14px;');
