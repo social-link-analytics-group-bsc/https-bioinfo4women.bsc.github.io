@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Bioinfo4Women · Bioinformatics for Women's Health</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -221,32 +222,54 @@
     
     .hero-content {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
       width: 100%;
       max-width: 1600px;
       padding: 0 4rem;
-      gap: 4rem;
+      gap: 2rem;
       position: relative;
       z-index: 1;
     }
     
     .hero-title {
-      text-align: right;
-      line-height: 0.85;
+      text-align: left;
+      line-height: 1;
+      white-space: nowrap;
+      width: 100%;
+      overflow: hidden;
     }
     
     .hero-title .title-line {
-      display: block;
-      font-size: 12vw;
-      font-weight: 900;
+      display: inline;
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(3rem, 8vw, 10rem);
       letter-spacing: -0.03em;
       color: #1d1d1f;
       text-transform: lowercase;
       margin: 0;
+      margin-right: 0.05em;
       cursor: pointer;
       transition: transform 0.3s ease, color 0.3s ease;
       position: relative;
+    }
+    
+    .hero-title .title-line:last-child {
+      margin-right: 0;
+    }
+    
+    /* Different font weights for each word */
+    .hero-title .title-line[data-word="bioinfo"] {
+      font-weight: 700;
+    }
+    
+    .hero-title .title-line[data-word="4"] {
+      font-weight: 300;
+    }
+    
+    .hero-title .title-line[data-word="women"] {
+      font-weight: 900;
     }
     
     .hero-title .title-line:hover {
@@ -255,7 +278,7 @@
     }
     
     .hero-text-content {
-      flex: 1;
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 2rem;
@@ -269,6 +292,7 @@
       text-align: left;
       color: #1d1d1f;
       font-weight: 500;
+      max-width: 800px;
     }
     
     .btn {
@@ -314,6 +338,234 @@
       color: #4a5568;
     }
     
+    /* About Section */
+    .about-section {
+      padding: 6rem 4rem;
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    .about-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1600px;
+      margin: 0 auto;
+      align-items: start;
+    }
+    
+    .about-left {
+      position: sticky;
+      top: 8rem;
+    }
+    
+    .about-left h2 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      color: #1d1d1f;
+      text-align: left;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    
+    .about-description {
+      font-size: 1.25rem;
+      line-height: 1.8;
+      color: #4a5568;
+      text-align: left;
+    }
+    
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .mission-vision-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .mission-window,
+    .vision-window {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 
+                  0 2px 8px rgba(0, 0, 0, 0.04);
+      border: none;
+      border-radius: 20px;
+      padding: 2.5rem;
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .mission-window.visible,
+    .vision-window.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    /* Fill effect from top-left corner on hover */
+    .mission-window::before,
+    .vision-window::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.35) 0%, rgba(0, 188, 212, 0.25) 100%);
+      border-radius: 20px;
+      transform: scale(0);
+      transform-origin: top left;
+      transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .vision-window::before {
+      background: linear-gradient(135deg, rgba(156, 39, 176, 0.35) 0%, rgba(103, 58, 183, 0.25) 100%);
+    }
+    
+    .mission-window:hover::before,
+    .vision-window:hover::before {
+      transform: scale(1);
+    }
+    
+    /* Ensure content stays above the fill effect */
+    .mission-window h3,
+    .vision-window h3,
+    .mission-window p,
+    .vision-window p {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .mission-window h3,
+    .vision-window h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #1d1d1f;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    
+    .mission-window p,
+    .vision-window p {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: #4a5568;
+      margin: 0;
+    }
+    
+    .objectives-subtitle {
+      font-size: 2.5rem;
+      text-align: center;
+      color: #1d1d1f;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 6rem 0 3rem;
+    }
+    
+    .objectives-container {
+      position: relative;
+      max-width: 1800px;
+      margin: 0 auto;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1000px;
+    }
+    
+    .objective-window {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 
+                  0 2px 8px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      padding: 2.5rem;
+      width: 350px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(50px) scale(0.95);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: center center;
+    }
+    
+    .objective-window.visible {
+      opacity: 1;
+    }
+    
+    /* Spread cards horizontally with slight rotation and overlap */
+    .objective-window[data-index="0"] {
+      z-index: 1;
+      left: calc(50% - 750px);
+    }
+    
+    .objective-window[data-index="0"].visible {
+      transform: translateY(0) translateX(0) rotate(-12deg) scale(0.95);
+    }
+    
+    .objective-window[data-index="1"] {
+      z-index: 2;
+      left: calc(50% - 450px);
+    }
+    
+    .objective-window[data-index="1"].visible {
+      transform: translateY(0) translateX(0) rotate(-6deg) scale(0.95);
+    }
+    
+    .objective-window[data-index="2"] {
+      z-index: 3;
+      left: calc(50% - 200px);
+    }
+    
+    .objective-window[data-index="2"].visible {
+      transform: translateY(0) translateX(0) rotate(0deg) scale(0.95);
+    }
+    
+    .objective-window[data-index="3"] {
+      z-index: 4;
+      left: calc(50% + 50px);
+    }
+    
+    .objective-window[data-index="3"].visible {
+      transform: translateY(0) translateX(0) rotate(6deg) scale(0.95);
+    }
+    
+    .objective-window[data-index="4"] {
+      z-index: 5;
+      left: calc(50% + 300px);
+    }
+    
+    .objective-window[data-index="4"].visible {
+      transform: translateY(0) translateX(0) rotate(12deg) scale(0.95);
+    }
+    
+    /* Hover effect - lift the hovered card, straighten it, and bring to front */
+    .objective-window:hover {
+      z-index: 10 !important;
+      transform: translateY(-80px) translateX(0) rotate(0deg) scale(1.05) !important;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15),
+                  0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .objective-window p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #4a5568;
+      margin: 0;
+    }
+    
     
     /* Grid Layout */
     .grid {
@@ -345,8 +597,8 @@
     .network-container {
       position: relative;
       width: 100%;
-      max-width: 1200px;
-      height: 1000px;
+      max-width: 1400px;
+      height: 900px;
       margin: 4rem auto 0;
     }
     
@@ -378,8 +630,8 @@
     }
     
     .draggable-node .card {
-      width: 200px;
-      height: 200px;
+      width: 150px;
+      height: 150px;
       padding: 0;
       display: flex;
       align-items: center;
@@ -406,7 +658,9 @@
     .draggable-node:nth-child(2)::before,
     .draggable-node:nth-child(2)::after,
     .draggable-node:nth-child(4)::before,
-    .draggable-node:nth-child(4)::after {
+    .draggable-node:nth-child(4)::after,
+    .draggable-node:nth-child(6)::before,
+    .draggable-node:nth-child(6)::after {
       background: rgba(200, 150, 255, 0.15);
     }
     
@@ -497,31 +751,48 @@
     
     /* Alternate purple for some small blobs */
     .draggable-node:nth-child(2) .small-decorative-blob,
-    .draggable-node:nth-child(4) .small-decorative-blob {
+    .draggable-node:nth-child(4) .small-decorative-blob,
+    .draggable-node:nth-child(6) .small-decorative-blob {
       background: rgba(200, 150, 255, 0.12);
     }
     
-    /* Spaced out arrangement - titles spread across section */
+    /* Grid arrangement for 7 activities */
     .draggable-node:nth-child(1) {
-      top: 15%;
+      top: 10%;
       left: 10%;
     }
     
     .draggable-node:nth-child(2) {
-      top: 25%;
-      right: 15%;
-      left: auto;
+      top: 10%;
+      left: calc(50% - 75px);
     }
     
     .draggable-node:nth-child(3) {
-      top: 45%;
-      left: 20%;
+      top: 10%;
+      right: 10%;
+      left: auto;
     }
     
     .draggable-node:nth-child(4) {
-      top: 55%;
+      top: 40%;
+      left: 10%;
+    }
+    
+    .draggable-node:nth-child(5) {
+      top: 40%;
+      left: calc(50% - 75px);
+    }
+    
+    .draggable-node:nth-child(6) {
+      top: 40%;
       right: 10%;
       left: auto;
+    }
+    
+    .draggable-node:nth-child(7) {
+      top: 70%;
+      left: calc(50% - 75px);
+      right: auto;
     }
     
     
@@ -586,18 +857,21 @@
     
     .draggable-node h3 {
       margin: 0;
-      font-size: 8rem;
-      font-weight: 900;
-      color: rgba(29, 29, 31, 0.3);
-      text-align: left;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1d1d1f;
+      text-align: center;
       white-space: nowrap;
       transition: none;
       position: absolute;
-      z-index: 0;
+      z-index: 3;
       pointer-events: none;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      width: auto;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
     
     /* Titles will be positioned by JavaScript */
@@ -728,6 +1002,18 @@
     
     .draggable-node:nth-child(4) .card {
       border-radius: 45% 55% 55% 45% / 55% 45% 55% 45%;
+    }
+    
+    .draggable-node:nth-child(5) .card {
+      border-radius: 20px;
+    }
+    
+    .draggable-node:nth-child(6) .card {
+      border-radius: 20px;
+    }
+    
+    .draggable-node:nth-child(7) .card {
+      border-radius: 50% 50% 40% 60% / 40% 60% 40% 60%;
     }
     
     .card h3 {
@@ -923,25 +1209,25 @@
       
       .hero-content {
         flex-direction: column;
-        gap: 3rem;
+        gap: 2rem;
         padding: 0 2rem;
       }
       
       .hero-title {
-        text-align: center;
+        text-align: left;
       }
       
       .hero-title .title-line {
-        font-size: 18vw;
+        font-size: clamp(2.5rem, 12vw, 8rem);
       }
       
       .hero-text-content {
-        align-items: center;
+        align-items: flex-start;
       }
       
       .hero p {
         font-size: 1.125rem;
-        text-align: center;
+        text-align: left;
       }
       
       section {
@@ -950,6 +1236,89 @@
       
       section h2 {
         font-size: 2rem;
+      }
+      
+      .about-section {
+        padding: 4rem 2rem;
+      }
+      
+      .about-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .about-left {
+        position: relative;
+        top: 0;
+      }
+      
+      .about-left h2 {
+        text-align: center;
+        font-size: 2rem;
+      }
+      
+      .about-description {
+        text-align: center;
+        font-size: 1.125rem;
+      }
+      
+      .mission-window,
+      .vision-window {
+        transform: translateY(30px);
+      }
+      
+      .mission-window.visible,
+      .vision-window.visible {
+        transform: translateY(0);
+      }
+      
+      .objectives-subtitle {
+        font-size: 1.75rem;
+        margin: 4rem 0 2rem;
+      }
+      
+      .objectives-container {
+        height: auto;
+        flex-direction: column;
+        margin-top: 0;
+        overflow-x: visible;
+        gap: 1.5rem;
+        max-width: 100%;
+      }
+      
+      .objective-window {
+        position: relative;
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        left: auto !important;
+        transform: translateY(30px) rotate(0deg) !important;
+        z-index: auto !important;
+      }
+      
+      .objective-window[data-index="0"],
+      .objective-window[data-index="1"],
+      .objective-window[data-index="2"],
+      .objective-window[data-index="3"],
+      .objective-window[data-index="4"] {
+        left: auto !important;
+        transform: translateY(30px) rotate(0deg) !important;
+      }
+      
+      .objective-window.visible {
+        transform: translateY(0) rotate(0deg) !important;
+      }
+      
+      .objective-window[data-index="0"].visible,
+      .objective-window[data-index="1"].visible,
+      .objective-window[data-index="2"].visible,
+      .objective-window[data-index="3"].visible,
+      .objective-window[data-index="4"].visible {
+        transform: translateY(0) rotate(0deg) !important;
+      }
+      
+      .objective-window:hover {
+        transform: translateY(-5px) scale(1.02) rotate(0deg) !important;
       }
       
       .grid {
@@ -974,13 +1343,14 @@
       
       .draggable-node h3 {
         position: relative !important;
-        font-size: 3rem !important;
-        color: rgba(29, 29, 31, 0.4) !important;
-        margin-top: 1rem !important;
+        font-size: 1rem !important;
+        color: #1d1d1f !important;
+        margin-top: 0.5rem !important;
         transform: none !important;
         top: auto !important;
         left: auto !important;
         right: auto !important;
+        width: auto !important;
       }
       
       .draggable-node::before,
@@ -1019,7 +1389,10 @@
       .draggable-node:nth-child(1),
       .draggable-node:nth-child(2),
       .draggable-node:nth-child(3),
-      .draggable-node:nth-child(4) {
+      .draggable-node:nth-child(4),
+      .draggable-node:nth-child(5),
+      .draggable-node:nth-child(6),
+      .draggable-node:nth-child(7) {
         position: relative !important;
       }
       
@@ -1070,9 +1443,7 @@
   <section class="hero">
     <div class="hero-content">
       <div class="hero-title">
-        <span class="title-line" data-word="bioinfo">bioinfo</span>
-        <span class="title-line" data-word="4">4</span>
-        <span class="title-line" data-word="women">women</span>
+        <span class="title-line" data-word="bioinfo">bioinfo</span><span class="title-line" data-word="4">4</span><span class="title-line" data-word="women">women</span>
       </div>
       <div class="hero-text-content">
         <p>Advancing women's health through bioinformatics research and innovation. Bridging the gap in gender-specific healthcare with cutting-edge computational approaches.</p>
@@ -1082,49 +1453,86 @@
   </section>
 
   <!-- About Section -->
-  <section id="about" class="fade-in">
-    <h2>About Us</h2>
-    <p style="text-align: center; max-width: 800px; margin: 0 auto;">
-      Bioinfo4Women is dedicated to leveraging bioinformatics and computational biology to address critical gaps in women's health research. We focus on developing innovative tools and methodologies to better understand gender-specific biological differences and improve healthcare outcomes for women.
-    </p>
+  <section id="about" class="about-section">
+    <div class="about-container">
+      <div class="about-left">
+        <h2>About Us</h2>
+        <p class="about-description">
+          Is an initiative from the Life Sciences Department at the BSC to promote the research done by women in computational biology, with special focus on their transition from postdoc to junior independent positions. B4W supports researchers in computational biology by promoting the exchange of knowledge and experience of outstanding women researchers through activities such as seminars, conferences, training opportunities, and mentorships. B4W seeks to give greater visibility to the contribution of women in different fields of biology, with a particular focus on the areas of personalized medicine, bioinformatics and HPC. Ultimately, B4W aims at building a more collaborative, supportive, and equal scientific community that benefits society as a whole.
+        </p>
+      </div>
+      <div class="about-right">
+        <div class="mission-vision-container">
+          <div class="mission-window scroll-reveal">
+            <h3>Mission</h3>
+            <p>To highlight the work from women computational biologists by providing role models, training, and support to women researchers in all career stages to develop their scientific career, with a special focus on their transition from postdoctoral to junior independent positions.</p>
+          </div>
+          <div class="vision-window scroll-reveal">
+            <h3>Vision</h3>
+            <p>To promote gender equality for better science in the area of computational biology by boosting women representation in scientific and technological leadership, and ultimately building a more collaborative, supportive, equal and excellent scientific community.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h3 class="objectives-subtitle">Objectives</h3>
+    <div class="objectives-container">
+      <div class="objective-window scroll-reveal" data-index="0">
+        <p>Support women bioinformaticians and computational biologists in their transition from senior postdocs to independent junior PIs</p>
+      </div>
+      <div class="objective-window scroll-reveal" data-index="1">
+        <p>Promote the recognition of the scientific achievements of women bioinformaticians and computational biologists</p>
+      </div>
+      <div class="objective-window scroll-reveal" data-index="2">
+        <p>Increase the participation of women in bioinformatics research and leadership by promoting the exchange of knowledge and experience of outstanding women researchers through activities such as seminars, conferences, training opportunities, and mentorships, and facilitating collaborations with established research groups</p>
+      </div>
+      <div class="objective-window scroll-reveal" data-index="3">
+        <p>Raise awareness and promote research on sex and gender bias analysis in computational biology and AI research for personalized medicine applications and scientific practice</p>
+      </div>
+      <div class="objective-window scroll-reveal" data-index="4">
+        <p>Foster collaboration and communication among women scientists in the international scientific community, by establishing a network of researchers and institutions, thereby multiplying their impact</p>
+      </div>
+    </div>
   </section>
 
-  <!-- Research Areas -->
+  <!-- Activities -->
   <section id="research" class="fade-in">
     <div class="network-container">
-      <h2>Research Areas</h2>
+      <h2>Activities</h2>
       <div class="network-nodes" id="network-nodes">
         <div class="draggable-node" data-node="0">
           <div class="card">
           </div>
-          <h3>Genomics</h3>
-          <div class="description-blob">
-            <p>Studying genetic variations and their impact on women's health, including sex-specific disease susceptibility and treatment response.</p>
-          </div>
+          <h3>Mentoring</h3>
         </div>
         <div class="draggable-node" data-node="1">
           <div class="card">
           </div>
-          <h3>Data Analysis</h3>
-          <div class="description-blob">
-            <p>Developing advanced computational methods for analyzing large-scale biomedical datasets with a focus on gender differences.</p>
-          </div>
+          <h3>Conferences</h3>
         </div>
         <div class="draggable-node" data-node="2">
           <div class="card">
           </div>
-          <h3>Precision Medicine</h3>
-          <div class="description-blob">
-            <p>Creating personalized healthcare approaches that account for biological sex differences in disease presentation and treatment.</p>
-          </div>
+          <h3>Fellows</h3>
         </div>
         <div class="draggable-node" data-node="3">
           <div class="card">
           </div>
-          <h3>Systems Biology</h3>
-          <div class="description-blob">
-            <p>Integrating multi-omics data to understand complex biological systems and pathways relevant to women's health.</p>
+          <h3>Seminars</h3>
+        </div>
+        <div class="draggable-node" data-node="4">
+          <div class="card">
           </div>
+          <h3>Open Day</h3>
+        </div>
+        <div class="draggable-node" data-node="5">
+          <div class="card">
+          </div>
+          <h3>Networking</h3>
+        </div>
+        <div class="draggable-node" data-node="6">
+          <div class="card">
+          </div>
+          <h3>Community Building</h3>
         </div>
       </div>
     </div>
@@ -1261,6 +1669,54 @@
     });
 
     // ========================================
+    // 4.5. About Section Scroll Animations
+    // ========================================
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      const missionWindow = document.querySelector('.mission-window');
+      const visionWindow = document.querySelector('.vision-window');
+      const objectiveWindows = document.querySelectorAll('.objective-window');
+      
+      function handleAboutScroll() {
+        const sectionRect = aboutSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const sectionTop = sectionRect.top;
+        const sectionHeight = sectionRect.height;
+        const sectionBottom = sectionTop + sectionHeight;
+        
+        // Mission window appears when section is 30% visible
+        if (missionWindow && sectionTop < windowHeight * 0.7 && sectionTop > -sectionHeight * 0.3) {
+          missionWindow.classList.add('visible');
+        }
+        
+        // Vision window appears when section is 50% visible
+        if (visionWindow && sectionTop < windowHeight * 0.5 && sectionTop > -sectionHeight * 0.5) {
+          visionWindow.classList.add('visible');
+        }
+        
+        // Objectives appear sequentially as you scroll
+        objectiveWindows.forEach((window, index) => {
+          const windowRect = window.getBoundingClientRect();
+          const triggerPoint = windowHeight * 0.8;
+          
+          if (windowRect.top < triggerPoint && windowRect.bottom > 0) {
+            // Stagger the animation based on index
+            setTimeout(() => {
+              window.classList.add('visible');
+            }, index * 150);
+          }
+        });
+      }
+      
+      // Initial check
+      handleAboutScroll();
+      
+      // Check on scroll
+      window.addEventListener('scroll', handleAboutScroll);
+      window.addEventListener('resize', handleAboutScroll);
+    }
+
+    // ========================================
     // 5. Active Nav Link on Scroll
     // ========================================
     const sections = document.querySelectorAll('section[id]');
@@ -1385,57 +1841,7 @@
         nodeScales.set(node, 0.5);
       });
       
-      // Position titles to match initial blob positions
-      function positionTitles() {
-        const titlePositions = [
-          { top: '15%', left: '10%', right: 'auto' },
-          { top: '25%', left: 'auto', right: '15%' },
-          { top: '45%', left: '20%', right: 'auto' },
-          { top: '55%', left: 'auto', right: '10%' }
-        ];
-        
-        nodes.forEach((node, index) => {
-          const title = node.querySelector('h3');
-          if (title && titlePositions[index]) {
-            const pos = titlePositions[index];
-            // Position relative to the node's initial position
-            title.style.position = 'absolute';
-            title.style.top = '50%';
-            title.style.left = '50%';
-            title.style.transform = 'translate(-50%, -50%)';
-            
-            // Calculate offset to match container position
-            const containerRect = networkContainer.getBoundingClientRect();
-            const containerWidth = networkContainer.offsetWidth;
-            const containerHeight = networkContainer.offsetHeight;
-            const nodeRect = node.getBoundingClientRect();
-            
-            let offsetX = 0, offsetY = 0;
-            
-            if (pos.left !== 'auto') {
-              const targetLeft = containerWidth * parseFloat(pos.left) / 100;
-              const currentLeft = nodeRect.left - containerRect.left + nodeRect.width / 2;
-              offsetX = targetLeft - currentLeft;
-            } else if (pos.right !== 'auto') {
-              const targetRight = containerWidth * parseFloat(pos.right) / 100;
-              const currentRight = containerRect.right - nodeRect.right + nodeRect.width / 2;
-              offsetX = currentRight - targetRight;
-            }
-            
-            if (pos.top) {
-              const targetTop = containerHeight * parseFloat(pos.top) / 100;
-              const currentTop = nodeRect.top - containerRect.top + nodeRect.height / 2;
-              offsetY = targetTop - currentTop;
-            }
-            
-            title.style.transform = `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px))`;
-          }
-        });
-      }
-      
-      // Position titles after a short delay to ensure layout is ready
-      setTimeout(positionTitles, 100);
-      window.addEventListener('resize', () => setTimeout(positionTitles, 100));
+      // Titles are now centered on blobs via CSS, no JavaScript positioning needed
       
       // Mouse down event - start dragging
       nodes.forEach(node => {
@@ -1535,5 +1941,7 @@
     console.log('%c🧬 Welcome to Bioinfo4Women! 🧬', 'color: #667eea; font-size: 20px; font-weight: bold;');
     console.log('%cInterested in bioinformatics for women\'s health? Join us!', 'color: #764ba2; font-size: 14px;');
   </script>
+</body>
+</html>
 </body>
 </html>
