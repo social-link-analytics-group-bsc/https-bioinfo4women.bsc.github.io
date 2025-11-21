@@ -130,9 +130,16 @@
       right: 0;
       bottom: 0;
       opacity: 0;
-      transition: opacity 2.5s ease;
+      background: transparent;
+      transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
       pointer-events: none;
       z-index: 0;
+    }
+    
+    .hero.hover-bioinfo::before,
+    .hero.hover-4::before,
+    .hero.hover-women::before {
+      transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     /* Liquid Animation Keyframes */
@@ -246,13 +253,15 @@
       font-family: 'Montserrat', sans-serif;
       font-size: clamp(3rem, 8vw, 10rem);
       letter-spacing: -0.03em;
-      color: #1d1d1f;
+      color: rgba(29, 29, 31, 0.1);
       text-transform: lowercase;
       margin: 0;
       margin-right: 0.05em;
       cursor: pointer;
-      transition: transform 0.3s ease, color 0.3s ease;
+      transition: transform 0.3s ease, color 0.6s ease;
       position: relative;
+      animation: turnOn 1.2s ease forwards;
+      animation-fill-mode: both;
     }
     
     .hero-title .title-line:last-child {
@@ -262,19 +271,31 @@
     /* Different font weights for each word */
     .hero-title .title-line[data-word="bioinfo"] {
       font-weight: 700;
+      animation-delay: 0.5s;
     }
     
     .hero-title .title-line[data-word="4"] {
       font-weight: 300;
+      animation-delay: 1.2s;
     }
     
     .hero-title .title-line[data-word="women"] {
       font-weight: 900;
+      animation-delay: 1.9s;
+    }
+    
+    @keyframes turnOn {
+      0% {
+        color: rgba(29, 29, 31, 0.1);
+      }
+      100% {
+        color: #1d1d1f;
+      }
     }
     
     .hero-title .title-line:hover {
       transform: translateX(-10px);
-      color: rgba(29, 29, 31, 0.8);
+      color: #1d1d1f;
     }
     
     .hero-text-content {
@@ -321,6 +342,14 @@
       padding: 6rem 4rem;
       max-width: 100%;
       margin: 0 auto;
+    }
+    
+    /* Activities section - full viewport height */
+    section#research {
+      padding: 0 4rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
     }
     
     section h2 {
@@ -566,6 +595,103 @@
       margin: 0;
     }
     
+    /* Team Section */
+    .team-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 1rem;
+      aspect-ratio: 1;
+    }
+    
+    .team-photo {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .team-photo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(90, 62, 133, 0.3);
+      border-color: rgba(90, 62, 133, 0.5);
+      z-index: 10;
+    }
+    
+    .team-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    
+    .team-photo:hover img {
+      transform: scale(1.1);
+    }
+    
+    .team-name-display {
+      position: sticky;
+      top: 2rem;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+    
+    .displayed-name {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #1d1d1f;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .displayed-name.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .displayed-name::before {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #5a3e85, transparent);
+      margin: 0 auto 1rem;
+      opacity: 0;
+      transform: scaleX(0);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .displayed-name.show::before {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    
     
     /* Grid Layout */
     .grid {
@@ -578,12 +704,12 @@
       margin-right: auto;
     }
     
-    /* Research Section Title - at bottom */
+    /* Activities Section Title - center-left */
     .network-container h2 {
       position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 50%;
+      left: 4rem;
+      transform: translateY(-50%);
       z-index: 1;
       margin: 0;
       pointer-events: none;
@@ -597,9 +723,10 @@
     .network-container {
       position: relative;
       width: 100%;
-      max-width: 1400px;
-      height: 900px;
-      margin: 4rem auto 0;
+      max-width: 1600px;
+      height: 100vh;
+      min-height: 100vh;
+      margin: 0 auto;
     }
     
     #network-canvas {
@@ -611,6 +738,7 @@
       width: 100%;
       height: 100%;
       z-index: 1;
+      overflow: visible;
     }
     
     .draggable-node {
@@ -623,6 +751,7 @@
       will-change: transform;
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 2;
+      overflow: visible;
     }
     
     .draggable-node:active {
@@ -630,8 +759,8 @@
     }
     
     .draggable-node .card {
-      width: 150px;
-      height: 150px;
+      width: 280px;
+      height: 280px;
       padding: 0;
       display: flex;
       align-items: center;
@@ -749,6 +878,39 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
     
+    /* Floating animated blobs that fade in and out */
+    .floating-blob {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      animation: floatFade 8s ease-in-out infinite;
+    }
+    
+    .floating-blob.cyan {
+      background: rgba(102, 217, 255, 0.15);
+    }
+    
+    .floating-blob.purple {
+      background: rgba(200, 150, 255, 0.15);
+    }
+    
+    @keyframes floatFade {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(0.8) translateY(0);
+      }
+      20% {
+        opacity: 1;
+        transform: scale(1) translateY(-10px);
+      }
+      80% {
+        opacity: 1;
+        transform: scale(1) translateY(-10px);
+      }
+    }
+    
     /* Alternate purple for some small blobs */
     .draggable-node:nth-child(2) .small-decorative-blob,
     .draggable-node:nth-child(4) .small-decorative-blob,
@@ -756,43 +918,40 @@
       background: rgba(200, 150, 255, 0.12);
     }
     
-    /* Grid arrangement for 7 activities */
+    /* Clustered group arrangement for 7 activities - more separated */
     .draggable-node:nth-child(1) {
-      top: 10%;
-      left: 10%;
+      top: 25%;
+      left: 30%;
     }
     
     .draggable-node:nth-child(2) {
-      top: 10%;
-      left: calc(50% - 75px);
+      top: 20%;
+      left: 48%;
     }
     
     .draggable-node:nth-child(3) {
-      top: 10%;
-      right: 10%;
-      left: auto;
+      top: 18%;
+      left: 68%;
     }
     
     .draggable-node:nth-child(4) {
-      top: 40%;
-      left: 10%;
+      top: 50%;
+      left: 25%;
     }
     
     .draggable-node:nth-child(5) {
-      top: 40%;
-      left: calc(50% - 75px);
+      top: 47%;
+      left: 45%;
     }
     
     .draggable-node:nth-child(6) {
-      top: 40%;
-      right: 10%;
-      left: auto;
+      top: 45%;
+      left: 65%;
     }
     
     .draggable-node:nth-child(7) {
       top: 70%;
-      left: calc(50% - 75px);
-      right: auto;
+      left: 42%;
     }
     
     
@@ -859,7 +1018,7 @@
       margin: 0;
       font-size: 1.25rem;
       font-weight: 600;
-      color: #1d1d1f;
+      color: #6e6e73;
       text-align: center;
       white-space: nowrap;
       transition: none;
@@ -868,10 +1027,13 @@
       pointer-events: none;
       letter-spacing: -0.01em;
       line-height: 1.2;
-      width: 100%;
+      width: auto;
+      min-width: 280px;
+      padding: 0 10px;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      overflow: visible;
     }
     
     /* Titles will be positioned by JavaScript */
@@ -1005,11 +1167,11 @@
     }
     
     .draggable-node:nth-child(5) .card {
-      border-radius: 20px;
+      border-radius: 55% 45% 45% 55% / 50% 50% 50% 50%;
     }
     
     .draggable-node:nth-child(6) .card {
-      border-radius: 20px;
+      border-radius: 40% 60% 50% 50% / 60% 40% 50% 50%;
     }
     
     .draggable-node:nth-child(7) .card {
@@ -1321,6 +1483,29 @@
         transform: translateY(-5px) scale(1.02) rotate(0deg) !important;
       }
       
+      .team-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1rem;
+      }
+      
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        gap: 0.75rem;
+      }
+      
+      .team-name-display {
+        position: relative;
+        top: 0;
+        height: 200px;
+        min-height: 200px;
+      }
+      
+      .displayed-name {
+        font-size: 1.5rem;
+      }
+      
       .grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -1330,15 +1515,23 @@
         padding: 2rem;
       }
       
+      section#research {
+        padding: 4rem 2rem;
+        min-height: 100vh;
+      }
+      
       .network-container {
-        height: 1400px;
+        height: auto;
+        min-height: 100vh;
       }
       
       .network-container h2 {
         position: relative;
         transform: none;
         margin-bottom: 2rem;
-        bottom: auto;
+        top: auto;
+        left: auto;
+        text-align: left;
       }
       
       .draggable-node h3 {
@@ -1384,6 +1577,11 @@
         width: 200px !important;
         height: 200px !important;
         margin: 0 auto;
+      }
+      
+      .draggable-node h3 {
+        min-width: 200px !important;
+        color: #6e6e73 !important;
       }
       
       .draggable-node:nth-child(1),
@@ -1541,9 +1739,64 @@
   <!-- Team Section -->
   <section id="team" class="fade-in">
     <h2>Our Team</h2>
-    <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+    <p style="text-align: center; max-width: 800px; margin: 0 auto; margin-bottom: 4rem;">
       Our multidisciplinary team brings together expertise in bioinformatics, computational biology, medicine, and data science. We are committed to promoting diversity in STEM and advancing research that benefits women's health globally.
     </p>
+    <div class="team-container">
+      <div class="team-grid">
+        <div class="team-photo" data-name="Coordinator Name 1">
+          <img src="images/team/coordinator1.jpg" alt="Coordinator Name 1">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 2">
+          <img src="images/team/coordinator2.jpg" alt="Coordinator Name 2">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 3">
+          <img src="images/team/coordinator3.jpg" alt="Coordinator Name 3">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 4">
+          <img src="images/team/coordinator4.jpg" alt="Coordinator Name 4">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 5">
+          <img src="images/team/coordinator5.jpg" alt="Coordinator Name 5">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 6">
+          <img src="images/team/coordinator6.jpg" alt="Coordinator Name 6">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 7">
+          <img src="images/team/coordinator7.jpg" alt="Coordinator Name 7">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 8">
+          <img src="images/team/coordinator8.jpg" alt="Coordinator Name 8">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 9">
+          <img src="images/team/coordinator9.jpg" alt="Coordinator Name 9">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 10">
+          <img src="images/team/coordinator10.jpg" alt="Coordinator Name 10">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 11">
+          <img src="images/team/coordinator11.jpg" alt="Coordinator Name 11">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 12">
+          <img src="images/team/coordinator12.jpg" alt="Coordinator Name 12">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 13">
+          <img src="images/team/coordinator13.jpg" alt="Coordinator Name 13">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 14">
+          <img src="images/team/coordinator14.jpg" alt="Coordinator Name 14">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 15">
+          <img src="images/team/coordinator15.jpg" alt="Coordinator Name 15">
+        </div>
+        <div class="team-photo" data-name="Coordinator Name 16">
+          <img src="images/team/coordinator16.jpg" alt="Coordinator Name 16">
+        </div>
+      </div>
+      <div class="team-name-display">
+        <div class="displayed-name"></div>
+      </div>
+    </div>
   </section>
 
   <!-- Publications Section -->
@@ -1843,6 +2096,55 @@
       
       // Titles are now centered on blobs via CSS, no JavaScript positioning needed
       
+      // Create floating animated blobs that fade in and out
+      const networkNodes = document.querySelector('.network-nodes');
+      if (networkNodes) {
+        const numFloatingBlobs = 12;
+        
+        for (let i = 0; i < numFloatingBlobs; i++) {
+          const floatingBlob = document.createElement('div');
+          floatingBlob.className = 'floating-blob';
+          
+          // Randomly assign cyan or purple
+          const isCyan = Math.random() > 0.5;
+          floatingBlob.classList.add(isCyan ? 'cyan' : 'purple');
+          
+          // Random size between 40-100px
+          const size = 40 + Math.random() * 60;
+          floatingBlob.style.width = `${size}px`;
+          floatingBlob.style.height = `${size * (0.8 + Math.random() * 0.4)}px`; // Vary height for irregularity
+          
+          // Random irregular border-radius (organic blob shapes)
+          const irregularShapes = [
+            '60% 40% 40% 60% / 50% 50% 50% 50%',
+            '40% 60% 60% 40% / 60% 40% 60% 40%',
+            '50% 50% 40% 60% / 40% 60% 40% 60%',
+            '45% 55% 55% 45% / 55% 45% 55% 45%',
+            '55% 45% 50% 50% / 50% 50% 45% 55%',
+            '35% 65% 60% 40% / 45% 55% 50% 50%',
+            '50% 50% 35% 65% / 60% 40% 55% 45%',
+            '65% 35% 45% 55% / 50% 50% 40% 60%'
+          ];
+          const randomShape = irregularShapes[Math.floor(Math.random() * irregularShapes.length)];
+          floatingBlob.style.borderRadius = randomShape;
+          
+          // Random position within the container
+          const leftPercent = 20 + Math.random() * 60; // 20% to 80%
+          const topPercent = 10 + Math.random() * 80; // 10% to 90%
+          floatingBlob.style.left = `${leftPercent}%`;
+          floatingBlob.style.top = `${topPercent}%`;
+          
+          // Random animation delay (0 to 8 seconds) for staggered appearance
+          floatingBlob.style.animationDelay = `${Math.random() * 8}s`;
+          
+          // Random animation duration (6-10 seconds) for variation
+          const duration = 6 + Math.random() * 4;
+          floatingBlob.style.animationDuration = `${duration}s`;
+          
+          networkNodes.appendChild(floatingBlob);
+        }
+      }
+      
       // Mouse down event - start dragging
       nodes.forEach(node => {
         node.addEventListener('mousedown', (e) => {
@@ -1940,8 +2242,25 @@
     // ========================================
     console.log('%c🧬 Welcome to Bioinfo4Women! 🧬', 'color: #667eea; font-size: 20px; font-weight: bold;');
     console.log('%cInterested in bioinformatics for women\'s health? Join us!', 'color: #764ba2; font-size: 14px;');
+    // ========================================
+    // Team Section - Name Display on Hover
+    // ========================================
+    const teamPhotos = document.querySelectorAll('.team-photo');
+    const displayedName = document.querySelector('.displayed-name');
+    
+    if (teamPhotos.length > 0 && displayedName) {
+      teamPhotos.forEach(photo => {
+        photo.addEventListener('mouseenter', () => {
+          const name = photo.getAttribute('data-name');
+          displayedName.textContent = name;
+          displayedName.classList.add('show');
+        });
+        
+        photo.addEventListener('mouseleave', () => {
+          displayedName.classList.remove('show');
+        });
+      });
+    }
   </script>
-</body>
-</html>
 </body>
 </html>
