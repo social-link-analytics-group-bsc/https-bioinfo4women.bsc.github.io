@@ -58,12 +58,11 @@
     }
     
     nav .logo {
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: #1d1d1f;
       opacity: 0;
       transform: translateY(-10px);
       transition: all 0.4s ease;
+      display: flex;
+      align-items: center;
     }
     
     nav.show-logo .logo {
@@ -71,8 +70,14 @@
       transform: translateY(0);
     }
     
-    nav.scrolled .logo {
-      font-size: 1.35rem;
+    nav .logo-img {
+      height: 2.5rem;
+      width: auto;
+      transition: height 0.3s ease;
+    }
+    
+    nav.scrolled .logo-img {
+      height: 2rem;
     }
     
     nav ul {
@@ -101,12 +106,12 @@
     }
     
     nav a:hover {
-      color: #5a3e85;
+      color: #9645c0;
     }
     
     /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background: linear-gradient(135deg, #9645c0 0%, #7384c1 100%);
       background-size: 200% 200%;
       animation: gradient 15s ease infinite;
       color: white;
@@ -191,40 +196,40 @@
     .hero.hover-bioinfo::before {
       opacity: 1;
       background: 
-        radial-gradient(ellipse 120% 40% at 30% 40%, rgba(0, 212, 255, 0.9) 0%, rgba(0, 212, 255, 0.4) 30%, transparent 60%),
-        radial-gradient(ellipse 40% 150% at 70% 60%, rgba(0, 188, 212, 0.8) 0%, rgba(0, 188, 212, 0.3) 35%, transparent 65%),
-        radial-gradient(ellipse 180% 60% at 50% 50%, rgba(100, 200, 255, 0.7) 0%, rgba(100, 200, 255, 0.3) 25%, transparent 50%),
-        radial-gradient(ellipse 50% 200% at 20% 80%, rgba(50, 220, 255, 0.6) 0%, transparent 55%),
-        radial-gradient(ellipse 200% 80% at 80% 30%, rgba(0, 255, 255, 0.5) 0%, transparent 45%),
-        linear-gradient(135deg, #ffffff 0%, #e0f7ff 100%);
+        radial-gradient(ellipse 120% 40% at 30% 40%, rgba(150, 69, 192, 0.3) 0%, rgba(150, 69, 192, 0.15) 30%, transparent 60%),
+        radial-gradient(ellipse 40% 150% at 70% 60%, rgba(115, 132, 193, 0.3) 0%, rgba(115, 132, 193, 0.15) 35%, transparent 65%),
+        radial-gradient(ellipse 180% 60% at 50% 50%, rgba(79, 194, 194, 0.25) 0%, rgba(79, 194, 194, 0.12) 25%, transparent 50%),
+        radial-gradient(ellipse 50% 200% at 20% 80%, rgba(150, 69, 192, 0.2) 0%, transparent 55%),
+        radial-gradient(ellipse 200% 80% at 80% 30%, rgba(115, 132, 193, 0.2) 0%, transparent 45%);
       animation: liquidFlow1 8s ease-in-out infinite;
       filter: blur(40px);
+      transform: scale(1.1) rotate(5deg);
     }
     
     .hero.hover-4::before {
       opacity: 1;
       background: 
-        radial-gradient(ellipse 130% 45% at 40% 30%, rgba(124, 77, 255, 0.9) 0%, rgba(124, 77, 255, 0.4) 30%, transparent 60%),
-        radial-gradient(ellipse 45% 160% at 60% 70%, rgba(83, 109, 254, 0.8) 0%, rgba(83, 109, 254, 0.3) 35%, transparent 65%),
-        radial-gradient(ellipse 170% 55% at 50% 50%, rgba(150, 100, 255, 0.7) 0%, rgba(150, 100, 255, 0.3) 25%, transparent 50%),
-        radial-gradient(ellipse 60% 190% at 80% 20%, rgba(100, 90, 255, 0.6) 0%, transparent 55%),
-        radial-gradient(ellipse 190% 70% at 15% 65%, rgba(110, 100, 255, 0.5) 0%, transparent 45%),
-        linear-gradient(135deg, #e8e0ff 0%, #f0e8ff 100%);
+        radial-gradient(ellipse 130% 45% at 40% 30%, rgba(115, 132, 193, 0.3) 0%, rgba(115, 132, 193, 0.15) 30%, transparent 60%),
+        radial-gradient(ellipse 45% 160% at 60% 70%, rgba(79, 194, 194, 0.3) 0%, rgba(79, 194, 194, 0.15) 35%, transparent 65%),
+        radial-gradient(ellipse 170% 55% at 50% 50%, rgba(150, 69, 192, 0.25) 0%, rgba(150, 69, 192, 0.12) 25%, transparent 50%),
+        radial-gradient(ellipse 60% 190% at 80% 20%, rgba(115, 132, 193, 0.2) 0%, transparent 55%),
+        radial-gradient(ellipse 190% 70% at 15% 65%, rgba(79, 194, 194, 0.2) 0%, transparent 45%);
       animation: liquidFlow2 8s ease-in-out infinite;
       filter: blur(40px);
+      transform: scale(1.15) rotate(-5deg);
     }
     
     .hero.hover-women::before {
       opacity: 1;
       background: 
-        radial-gradient(ellipse 110% 50% at 60% 40%, rgba(156, 39, 176, 0.9) 0%, rgba(156, 39, 176, 0.4) 30%, transparent 60%),
-        radial-gradient(ellipse 50% 170% at 40% 60%, rgba(103, 58, 183, 0.8) 0%, rgba(103, 58, 183, 0.3) 35%, transparent 65%),
-        radial-gradient(ellipse 190% 65% at 50% 50%, rgba(180, 80, 200, 0.7) 0%, rgba(180, 80, 200, 0.3) 25%, transparent 50%),
-        radial-gradient(ellipse 45% 210% at 15% 70%, rgba(140, 50, 180, 0.6) 0%, transparent 55%),
-        radial-gradient(ellipse 210% 75% at 85% 25%, rgba(170, 60, 190, 0.5) 0%, transparent 45%),
-        linear-gradient(135deg, #f3e5f5 0%, #ede7f6 100%);
+        radial-gradient(ellipse 110% 50% at 60% 40%, rgba(79, 194, 194, 0.3) 0%, rgba(79, 194, 194, 0.15) 30%, transparent 60%),
+        radial-gradient(ellipse 50% 170% at 40% 60%, rgba(150, 69, 192, 0.3) 0%, rgba(150, 69, 192, 0.15) 35%, transparent 65%),
+        radial-gradient(ellipse 190% 65% at 50% 50%, rgba(115, 132, 193, 0.25) 0%, rgba(115, 132, 193, 0.12) 25%, transparent 50%),
+        radial-gradient(ellipse 45% 210% at 15% 70%, rgba(79, 194, 194, 0.2) 0%, transparent 55%),
+        radial-gradient(ellipse 210% 75% at 85% 25%, rgba(150, 69, 192, 0.2) 0%, transparent 45%);
       animation: liquidFlow3 8s ease-in-out infinite;
       filter: blur(40px);
+      transform: scale(1.2) rotate(10deg);
     }
     
     .hero-content {
@@ -448,7 +453,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.35) 0%, rgba(0, 188, 212, 0.25) 100%);
+      background: linear-gradient(135deg, rgba(79, 194, 194, 0.35) 0%, rgba(115, 132, 193, 0.25) 100%);
       border-radius: 20px;
       transform: scale(0);
       transform-origin: top left;
@@ -458,7 +463,7 @@
     }
     
     .vision-window::before {
-      background: linear-gradient(135deg, rgba(156, 39, 176, 0.35) 0%, rgba(103, 58, 183, 0.25) 100%);
+      background: linear-gradient(135deg, rgba(150, 69, 192, 0.35) 0%, rgba(115, 132, 193, 0.25) 100%);
     }
     
     .mission-window:hover::before,
@@ -626,11 +631,52 @@
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
+    .team-photo.core-member {
+      border: 2px solid rgba(150, 69, 192, 0.5);
+      box-shadow: 0 4px 12px rgba(150, 69, 192, 0.2);
+    }
+    
+    .team-photo.volunteer {
+      border: 2px solid rgba(115, 132, 193, 0.5);
+      box-shadow: 0 4px 12px rgba(115, 132, 193, 0.2);
+    }
+    
     .team-photo:hover {
       transform: scale(1.05);
-      box-shadow: 0 8px 24px rgba(90, 62, 133, 0.3);
-      border-color: rgba(90, 62, 133, 0.5);
       z-index: 10;
+    }
+    
+    .team-photo.core-member:hover {
+      box-shadow: 0 8px 24px rgba(150, 69, 192, 0.4);
+      border-color: rgba(150, 69, 192, 0.7);
+    }
+    
+    .team-photo.volunteer:hover {
+      box-shadow: 0 8px 24px rgba(115, 132, 193, 0.4);
+      border-color: rgba(115, 132, 193, 0.7);
+    }
+    
+    .team-photo::after {
+      content: '';
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+    
+    .team-photo.core-member::after {
+      background: rgba(150, 69, 192, 0.8);
+      opacity: 1;
+    }
+    
+    .team-photo.volunteer::after {
+      background: rgba(115, 132, 193, 0.8);
+      opacity: 1;
     }
     
     .team-photo img {
@@ -680,7 +726,7 @@
       display: block;
       width: 60px;
       height: 3px;
-      background: linear-gradient(90deg, transparent, #5a3e85, transparent);
+      background: linear-gradient(90deg, transparent, #9645c0, transparent);
       margin: 0 auto 1rem;
       opacity: 0;
       transform: scaleX(0);
@@ -708,7 +754,7 @@
     .network-container h2 {
       position: absolute;
       top: 50%;
-      left: 4rem;
+      left: 2rem;
       transform: translateY(-50%);
       z-index: 1;
       margin: 0;
@@ -759,8 +805,8 @@
     }
     
     .draggable-node .card {
-      width: 280px;
-      height: 280px;
+      width: 220px;
+      height: 220px;
       padding: 0;
       display: flex;
       align-items: center;
@@ -774,7 +820,7 @@
     .draggable-node::after {
       content: '';
       position: absolute;
-      background: rgba(102, 217, 255, 0.15);
+      background: rgba(79, 194, 194, 0.15);
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
       border-radius: 50%;
@@ -790,7 +836,7 @@
     .draggable-node:nth-child(4)::after,
     .draggable-node:nth-child(6)::before,
     .draggable-node:nth-child(6)::after {
-      background: rgba(200, 150, 255, 0.15);
+      background: rgba(150, 69, 192, 0.15);
     }
     
     /* First decorative blob - different sizes and positions for each node */
@@ -869,7 +915,7 @@
     /* Additional small decorative blobs created via JavaScript */
     .small-decorative-blob {
       position: absolute;
-      background: rgba(102, 217, 255, 0.12);
+      background: rgba(79, 194, 194, 0.12);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       pointer-events: none;
@@ -889,11 +935,11 @@
     }
     
     .floating-blob.cyan {
-      background: rgba(102, 217, 255, 0.15);
+      background: rgba(79, 194, 194, 0.15);
     }
     
     .floating-blob.purple {
-      background: rgba(200, 150, 255, 0.15);
+      background: rgba(150, 69, 192, 0.15);
     }
     
     @keyframes floatFade {
@@ -915,7 +961,7 @@
     .draggable-node:nth-child(2) .small-decorative-blob,
     .draggable-node:nth-child(4) .small-decorative-blob,
     .draggable-node:nth-child(6) .small-decorative-blob {
-      background: rgba(200, 150, 255, 0.12);
+      background: rgba(150, 69, 192, 0.12);
     }
     
     /* Clustered group arrangement for 7 activities - more separated */
@@ -1028,7 +1074,7 @@
       letter-spacing: -0.01em;
       line-height: 1.2;
       width: auto;
-      min-width: 280px;
+      min-width: 220px;
       padding: 0 10px;
       top: 50%;
       left: 50%;
@@ -1123,6 +1169,86 @@
       transform: translateY(-50%);
     }
     
+    /* Info Window - appears on click, slides in from right as rounded card */
+    .activity-info-window {
+      position: fixed;
+      top: 50%;
+      right: -600px;
+      transform: translateY(-50%);
+      width: 500px;
+      max-width: 90vw;
+      height: 70vh;
+      max-height: 600px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12), 0 8px 32px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(150, 69, 192, 0.2);
+      border-radius: 24px 0 0 24px;
+      z-index: 1000;
+      transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+      padding: 3rem 2.5rem;
+    }
+    
+    .activity-info-window.active {
+      right: 0;
+      transform: translateY(-50%);
+    }
+    
+    .activity-info-window h3 {
+      font-size: 2rem;
+      color: #1d1d1f;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    
+    .activity-info-window .info-content {
+      color: #4a5568;
+      line-height: 1.8;
+    }
+    
+    .activity-info-window .info-content p {
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .activity-info-window .info-content ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .activity-info-window .info-content li {
+      font-size: 1.125rem;
+      margin-bottom: 0.75rem;
+      color: #4a5568;
+    }
+    
+    .activity-info-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .activity-info-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .draggable-node {
+      cursor: pointer;
+    }
+    
     
     /* macOS Style Floating Cards */
     .card {
@@ -1147,7 +1273,7 @@
       transform: translateY(-8px) scale(1.02) rotate(-1deg);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12),
                   0 8px 20px rgba(0, 0, 0, 0.08);
-      border: 1px solid rgba(90, 62, 133, 0.3);
+      border: 1px solid rgba(150, 69, 192, 0.3);
     }
     
     .draggable-node:nth-child(1) .card {
@@ -1194,6 +1320,368 @@
     /* Background alternating */
     section:nth-child(even) {
       background: rgba(247, 250, 252, 0.5);
+    }
+    
+    /* Publications Section */
+    .publications-container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    
+    .publications-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    
+    .stat-item {
+      text-align: center;
+      padding: 1.5rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+    }
+    
+    .stat-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #9645c0;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      font-size: 1rem;
+      color: #6e6e73;
+      font-weight: 500;
+    }
+    
+    .publications-filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      padding: 0.75rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(29, 29, 31, 0.2);
+      border-radius: 30px;
+      color: #1d1d1f;
+      font-weight: 500;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .filter-btn:hover {
+      border-color: #9645c0;
+      background: rgba(150, 69, 192, 0.05);
+      transform: translateY(-2px);
+    }
+    
+    .filter-btn.active {
+      background: linear-gradient(135deg, #9645c0 0%, #7384c1 100%);
+      color: white;
+      border-color: transparent;
+    }
+    
+    .publications-search {
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      position: relative;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 1rem 1.5rem 1rem 3rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(29, 29, 31, 0.2);
+      border-radius: 30px;
+      font-size: 1rem;
+      color: #1d1d1f;
+      transition: all 0.3s ease;
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: #9645c0;
+      box-shadow: 0 0 0 4px rgba(150, 69, 192, 0.1);
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6e6e73;
+      font-size: 1.25rem;
+    }
+    
+    .publications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .publication-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 
+                  0 2px 8px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .publication-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(135deg, #9645c0 0%, #9645c0 100%);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+    
+    /* Color coding for different types */
+    .publication-card[data-type="publication"]::before {
+      background: linear-gradient(135deg, #9645c0 0%, #9645c0 100%);
+    }
+    
+    .publication-card[data-type="resource"]::before {
+      background: linear-gradient(135deg, #7384c1 0%, #7384c1 100%);
+    }
+    
+    .publication-card[data-type="hackathon"]::before {
+      background: linear-gradient(135deg, #4fc2c2 0%, #4fc2c2 100%);
+    }
+    
+    .publication-card[data-type="publication"] {
+      border-left: 4px solid #9645c0;
+    }
+    
+    .publication-card[data-type="resource"] {
+      border-left: 4px solid #7384c1;
+    }
+    
+    .publication-card[data-type="hackathon"] {
+      border-left: 4px solid #4fc2c2;
+    }
+    
+    .publication-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12),
+                  0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .publication-card[data-type="publication"]:hover {
+      border-color: rgba(150, 69, 192, 0.3);
+    }
+    
+    .publication-card[data-type="resource"]:hover {
+      border-color: rgba(115, 132, 193, 0.3);
+    }
+    
+    .publication-card[data-type="hackathon"]:hover {
+      border-color: rgba(79, 194, 194, 0.3);
+    }
+    
+    .publication-card:hover::before {
+      transform: scaleY(1);
+    }
+    
+    .publication-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .publication-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(150, 69, 192, 0.1) 0%, rgba(115, 132, 193, 0.1) 100%);
+    }
+    
+    .publication-icon.paper {
+      background: linear-gradient(135deg, rgba(150, 69, 192, 0.15) 0%, rgba(150, 69, 192, 0.15) 100%);
+    }
+    
+    .publication-icon.tool {
+      background: linear-gradient(135deg, rgba(115, 132, 193, 0.15) 0%, rgba(115, 132, 193, 0.15) 100%);
+    }
+    
+    .publication-icon.hackathon {
+      background: linear-gradient(135deg, rgba(79, 194, 194, 0.15) 0%, rgba(79, 194, 194, 0.15) 100%);
+    }
+    
+    .publication-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1d1d1f;
+      margin: 0 0 0.5rem 0;
+      line-height: 1.4;
+    }
+    
+    .publication-meta {
+      font-size: 0.9rem;
+      color: #6e6e73;
+      margin-bottom: 1rem;
+    }
+    
+    .publication-authors {
+      color: #4a5568;
+      font-style: italic;
+    }
+    
+    .publication-year {
+      color: #9645c0;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+    
+    .publication-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .tag {
+      padding: 0.25rem 0.75rem;
+      background: rgba(150, 69, 192, 0.1);
+      color: #9645c0;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    
+    .publication-abstract {
+      font-size: 0.95rem;
+      color: #4a5568;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .publication-card.expanded .publication-abstract {
+      display: block;
+      -webkit-line-clamp: unset;
+      line-clamp: unset;
+    }
+    
+    .publication-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(29, 29, 31, 0.1);
+    }
+    
+    .publication-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(150, 69, 192, 0.05);
+      color: #9645c0;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .publication-link:hover {
+      background: rgba(150, 69, 192, 0.15);
+      transform: translateX(4px);
+    }
+    
+    .expand-btn {
+      background: none;
+      border: none;
+      color: #9645c0;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.25rem 0;
+      margin-top: 0.5rem;
+      transition: color 0.3s ease;
+    }
+    
+    .expand-btn:hover {
+      color: #7384c1;
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #6e6e73;
+      font-size: 1.125rem;
+    }
+    
+    @media (max-width: 768px) {
+      .publications-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .publications-stats {
+        gap: 1rem;
+      }
+      
+      .stat-item {
+        padding: 1rem 1.5rem;
+      }
+      
+      .stat-number {
+        font-size: 2rem;
+      }
+      
+      .publications-filters {
+        gap: 0.5rem;
+      }
+      
+      .filter-btn {
+        padding: 0.625rem 1.5rem;
+        font-size: 0.875rem;
+      }
     }
     
     /* Footer */
@@ -1292,7 +1780,7 @@
     }
     
     .hero {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background: linear-gradient(135deg, #9645c0 0%, #7384c1 50%, #4fc2c2 100%);
       background-size: 200% 200%;
       animation: gradient 15s ease infinite;
     }
@@ -1312,13 +1800,16 @@
     /* Responsive */
     @media (max-width: 768px) {
       nav .logo {
-        font-size: 1.5rem;
         opacity: 1;
         transform: translateY(0);
       }
       
-      nav.scrolled .logo {
-        font-size: 1.25rem;
+      nav .logo-img {
+        height: 2rem;
+      }
+      
+      nav.scrolled .logo-img {
+        height: 1.75rem;
       }
       
       .menu-toggle {
@@ -1338,7 +1829,7 @@
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(102, 126, 234, 0.95);
+        background: rgba(150, 69, 192, 0.95);
         backdrop-filter: blur(20px);
         flex-direction: column;
         gap: 0;
@@ -1530,8 +2021,24 @@
         transform: none;
         margin-bottom: 2rem;
         top: auto;
-        left: auto;
+        left: 1rem;
         text-align: left;
+      }
+      
+      .activity-info-window {
+        width: 90vw;
+        max-width: 90vw;
+        height: 70vh;
+        max-height: 500px;
+        top: 50%;
+        right: -90vw;
+        transform: translateY(-50%);
+        border-radius: 20px 0 0 20px;
+      }
+      
+      .activity-info-window.active {
+        right: 0;
+        transform: translateY(-50%);
       }
       
       .draggable-node h3 {
@@ -1574,13 +2081,13 @@
       }
       
       .draggable-node .card {
-        width: 200px !important;
-        height: 200px !important;
+        width: 180px !important;
+        height: 180px !important;
         margin: 0 auto;
       }
       
       .draggable-node h3 {
-        min-width: 200px !important;
+        min-width: 180px !important;
         color: #6e6e73 !important;
       }
       
@@ -1621,7 +2128,9 @@
   <!-- Navigation -->
   <nav>
     <div class="container">
-      <div class="logo">Bioinfo4Women</div>
+      <div class="logo">
+        <img src="images/logos/logo-b4w.svg" alt="Bioinfo4Women" class="logo-img">
+      </div>
       <div class="menu-toggle" id="mobile-menu">
         <span></span>
         <span></span>
@@ -1629,7 +2138,7 @@
       </div>
       <ul id="nav-menu">
         <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#research" class="nav-link">Research</a></li>
+        <li><a href="#research" class="nav-link">Activities</a></li>
         <li><a href="#team" class="nav-link">Team</a></li>
         <li><a href="#publications" class="nav-link">Publications</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -1697,41 +2206,49 @@
     <div class="network-container">
       <h2>Activities</h2>
       <div class="network-nodes" id="network-nodes">
-        <div class="draggable-node" data-node="0">
+        <div class="draggable-node" data-node="0" data-activity="mentoring">
           <div class="card">
           </div>
           <h3>Mentoring</h3>
         </div>
-        <div class="draggable-node" data-node="1">
+        <div class="draggable-node" data-node="1" data-activity="conferences">
           <div class="card">
           </div>
           <h3>Conferences</h3>
         </div>
-        <div class="draggable-node" data-node="2">
+        <div class="draggable-node" data-node="2" data-activity="fellows">
           <div class="card">
           </div>
           <h3>Fellows</h3>
         </div>
-        <div class="draggable-node" data-node="3">
+        <div class="draggable-node" data-node="3" data-activity="seminars">
           <div class="card">
           </div>
           <h3>Seminars</h3>
         </div>
-        <div class="draggable-node" data-node="4">
+        <div class="draggable-node" data-node="4" data-activity="openday">
           <div class="card">
           </div>
           <h3>Open Day</h3>
         </div>
-        <div class="draggable-node" data-node="5">
+        <div class="draggable-node" data-node="5" data-activity="networking">
           <div class="card">
           </div>
           <h3>Networking</h3>
         </div>
-        <div class="draggable-node" data-node="6">
+        <div class="draggable-node" data-node="6" data-activity="community">
           <div class="card">
           </div>
           <h3>Community Building</h3>
         </div>
+      </div>
+    </div>
+    
+    <!-- Activity Info Window -->
+    <div class="activity-info-overlay" id="activity-overlay"></div>
+    <div class="activity-info-window" id="activity-info-window">
+      <div class="info-content" id="activity-info-content">
+        <!-- Content will be populated by JavaScript -->
       </div>
     </div>
   </section>
@@ -1744,52 +2261,52 @@
     </p>
     <div class="team-container">
       <div class="team-grid">
-        <div class="team-photo" data-name="Coordinator Name 1">
+        <div class="team-photo core-member" data-name="Coordinator Name 1">
           <img src="images/team/coordinator1.jpg" alt="Coordinator Name 1">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 2">
+        <div class="team-photo core-member" data-name="Coordinator Name 2">
           <img src="images/team/coordinator2.jpg" alt="Coordinator Name 2">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 3">
+        <div class="team-photo core-member" data-name="Coordinator Name 3">
           <img src="images/team/coordinator3.jpg" alt="Coordinator Name 3">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 4">
+        <div class="team-photo core-member" data-name="Coordinator Name 4">
           <img src="images/team/coordinator4.jpg" alt="Coordinator Name 4">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 5">
+        <div class="team-photo core-member" data-name="Coordinator Name 5">
           <img src="images/team/coordinator5.jpg" alt="Coordinator Name 5">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 6">
+        <div class="team-photo core-member" data-name="Coordinator Name 6">
           <img src="images/team/coordinator6.jpg" alt="Coordinator Name 6">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 7">
+        <div class="team-photo core-member" data-name="Coordinator Name 7">
           <img src="images/team/coordinator7.jpg" alt="Coordinator Name 7">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 8">
+        <div class="team-photo core-member" data-name="Coordinator Name 8">
           <img src="images/team/coordinator8.jpg" alt="Coordinator Name 8">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 9">
+        <div class="team-photo volunteer" data-name="Coordinator Name 9">
           <img src="images/team/coordinator9.jpg" alt="Coordinator Name 9">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 10">
+        <div class="team-photo volunteer" data-name="Coordinator Name 10">
           <img src="images/team/coordinator10.jpg" alt="Coordinator Name 10">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 11">
+        <div class="team-photo volunteer" data-name="Coordinator Name 11">
           <img src="images/team/coordinator11.jpg" alt="Coordinator Name 11">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 12">
+        <div class="team-photo volunteer" data-name="Coordinator Name 12">
           <img src="images/team/coordinator12.jpg" alt="Coordinator Name 12">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 13">
+        <div class="team-photo volunteer" data-name="Coordinator Name 13">
           <img src="images/team/coordinator13.jpg" alt="Coordinator Name 13">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 14">
+        <div class="team-photo volunteer" data-name="Coordinator Name 14">
           <img src="images/team/coordinator14.jpg" alt="Coordinator Name 14">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 15">
+        <div class="team-photo volunteer" data-name="Coordinator Name 15">
           <img src="images/team/coordinator15.jpg" alt="Coordinator Name 15">
         </div>
-        <div class="team-photo" data-name="Coordinator Name 16">
+        <div class="team-photo volunteer" data-name="Coordinator Name 16">
           <img src="images/team/coordinator16.jpg" alt="Coordinator Name 16">
         </div>
       </div>
@@ -1802,9 +2319,317 @@
   <!-- Publications Section -->
   <section id="publications" class="fade-in">
     <h2>Publications & Resources</h2>
-    <p style="text-align: center; max-width: 800px; margin: 0 auto;">
-      Explore our latest research publications, tools, and resources. We are committed to open science and making our findings accessible to the research community and the public.
+    <p style="text-align: center; max-width: 900px; margin: 0 auto 3rem; font-size: 1.25rem; line-height: 1.8; color: #4a5568;">
+      Our research contributions span peer-reviewed publications, open-source tools, and innovative solutions developed through collaborative hackathons. Here, we showcase the scientific achievements of women in computational biology—from groundbreaking papers advancing personalized medicine to practical resources born from intensive hackathon collaborations. Each contribution reflects our commitment to open science, gender equity in research, and making computational biology more accessible to the global scientific community.
     </p>
+    
+    <div class="publications-container">
+      <!-- Statistics -->
+      <div class="publications-stats">
+        <div class="stat-item">
+          <span class="stat-number" data-count="0">0</span>
+          <span class="stat-label">Publications</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="0">0</span>
+          <span class="stat-label">Resources</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="0">0</span>
+          <span class="stat-label">Hackathons</span>
+        </div>
+      </div>
+      
+      <!-- Filter Tabs -->
+      <div class="publications-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="publication">Publications</button>
+        <button class="filter-btn" data-filter="resource">Resources</button>
+        <button class="filter-btn" data-filter="hackathon">Hackathons</button>
+      </div>
+      
+      <!-- Search Bar -->
+      <div class="publications-search">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" placeholder="Search publications, resources, or hackathons..." id="publications-search">
+      </div>
+      
+      <!-- Publications Grid -->
+      <div class="publications-grid" id="publications-grid">
+        <!-- Sex and Gender Bias in Technology and AI - Book -->
+        <div class="publication-card" data-type="publication" data-year="2024">
+          <div class="publication-header">
+            <div class="publication-icon paper">📚</div>
+            <div style="flex: 1;">
+              <h3 class="publication-title">Sex and Gender Bias in Technology and Artificial Intelligence</h3>
+              <div class="publication-meta">
+                <span class="publication-authors">Edited Volume</span>
+                <span class="publication-year">2024</span>
+              </div>
+            </div>
+          </div>
+          <div class="publication-tags">
+            <span class="tag">Book</span>
+            <span class="tag">AI Bias</span>
+            <span class="tag">Gender Bias</span>
+            <span class="tag">Technology</span>
+          </div>
+          <p class="publication-abstract">
+            A comprehensive edited volume examining sex and gender bias in technology and artificial intelligence, providing critical insights into how bias manifests in AI systems and technological solutions, and offering strategies for developing more equitable technologies.
+          </p>
+          <div class="publication-links">
+            <a href="https://www.sciencedirect.com/book/edited-volume/9780128213926/sex-and-gender-bias-in-technology-and-artificial-intelligence" target="_blank" class="publication-link">📚 Book</a>
+            <a href="https://www.sciencedirect.com/book/edited-volume/9780128213926/sex-and-gender-bias-in-technology-and-artificial-intelligence" target="_blank" class="publication-link">🔗 Link</a>
+          </div>
+        </div>
+        
+        <!-- Integration of sex and gender dimension handbook - Resource -->
+        <div class="publication-card" data-type="resource" data-year="2024">
+          <div class="publication-header">
+            <div class="publication-icon tool">🛠️</div>
+            <div style="flex: 1;">
+              <h3 class="publication-title">Integration of the sex and gender dimension in life sciences research - handbook</h3>
+              <div class="publication-meta">
+                <span class="publication-authors">Cano Abadía, M., Cirillo, D., et al. (Bioinfo4Women)</span>
+                <span class="publication-year">2024</span>
+              </div>
+            </div>
+          </div>
+          <div class="publication-tags">
+            <span class="tag">Handbook</span>
+            <span class="tag">Training Material</span>
+            <span class="tag">Sex and Gender</span>
+            <span class="tag">Life Sciences</span>
+          </div>
+          <p class="publication-abstract">
+            A comprehensive handbook for trainers aiming to incorporate the sex and gender dimension into life sciences research. Includes case studies, implementation guidelines, and practical examples covering topics from definitions of sex and gender to bias mitigation tools, genetics, drug development, single cell multiomics, and artificial intelligence.
+          </p>
+          <div class="publication-links">
+            <a href="https://doi.org/10.5281/zenodo.13767883" target="_blank" class="publication-link">🔗 DOI</a>
+            <a href="https://zenodo.org/records/13767883" target="_blank" class="publication-link">📄 Download</a>
+          </div>
+        </div>
+        
+        <!-- Buslón et al. 2025 -->
+        <div class="publication-card" data-type="publication" data-year="2025">
+          <div class="publication-header">
+            <div class="publication-icon paper">📄</div>
+            <div style="flex: 1;">
+              <h3 class="publication-title">Exploring gender bias in artificial intelligence for personalized medicine: Insights from trans community focus groups</h3>
+              <div class="publication-meta">
+                <span class="publication-authors">Buslón et al.</span>
+                <span class="publication-year">2025</span>
+              </div>
+            </div>
+          </div>
+          <div class="publication-tags">
+            <span class="tag">AI Bias</span>
+            <span class="tag">Personalized Medicine</span>
+            <span class="tag">Gender</span>
+            <span class="tag">Trans Health</span>
+          </div>
+          <p class="publication-abstract">
+            This research explores gender bias in artificial intelligence applications for personalized medicine through focus groups with the trans community, highlighting critical gaps and recommendations for more inclusive AI systems in healthcare.
+          </p>
+          <div class="publication-links">
+            <a href="https://doi.org/10.2196/72325" target="_blank" class="publication-link">🔗 DOI</a>
+            <a href="https://www.jmir.org/2025/1/e72325" target="_blank" class="publication-link">📄 Article</a>
+          </div>
+        </div>
+        
+        <!-- Ruiz-Serra et al. 2024 - Hackathon -->
+        <div class="publication-card" data-type="hackathon" data-year="2024">
+          <div class="publication-header">
+            <div class="publication-icon hackathon">🚀</div>
+            <div style="flex: 1;">
+              <h3 class="publication-title">Analyzing sex imbalance in EGA and dbGaP biological databases: Recommendations for better practices</h3>
+              <div class="publication-meta">
+                <span class="publication-authors">Ruiz-Serra et al.</span>
+                <span class="publication-year">2024</span>
+              </div>
+            </div>
+          </div>
+          <div class="publication-tags">
+            <span class="tag">Hackathon</span>
+            <span class="tag">Data Bias</span>
+            <span class="tag">Biological Databases</span>
+            <span class="tag">Sex Imbalance</span>
+          </div>
+          <p class="publication-abstract">
+            This hackathon project analyzes sex imbalance in major biological databases (EGA and dbGaP) and provides recommendations for better practices to ensure more balanced representation and reduce gender bias in genomic and biomedical research data.
+          </p>
+          <div class="publication-links">
+            <a href="https://doi.org/10.1016/j.isci.2024.110831" target="_blank" class="publication-link">🔗 DOI</a>
+            <a href="https://www.cell.com/iscience/fulltext/S2589-0042(24)02345-0" target="_blank" class="publication-link">📄 Article</a>
+          </div>
+        </div>
+        
+        <!-- ELIXIR BioHackathon 2023 -->
+        <div class="publication-card" data-type="hackathon" data-year="2023">
+          <div class="publication-header">
+            <div class="publication-icon hackathon">🚀</div>
+            <div style="flex: 1;">
+              <h3 class="publication-title">ELIXIR BioHackathon 2023</h3>
+              <div class="publication-meta">
+                <span class="publication-authors">Led by María Morales</span>
+                <span class="publication-year">2023</span>
+              </div>
+            </div>
+          </div>
+          <div class="publication-tags">
+            <span class="tag">Hackathon</span>
+            <span class="tag">ELIXIR</span>
+            <span class="tag">BioHackathon</span>
+            <span class="tag">Work in Progress</span>
+          </div>
+          <p class="publication-abstract">
+            ELIXIR BioHackathon 2023 project led by María Morales. This collaborative hackathon initiative is currently a work in progress, focusing on advancing research in computational biology and bioinformatics.
+          </p>
+          <div class="publication-links">
+            <a href="#" class="publication-link">📝 In Progress</a>
+          </div>
+        </div>
+        
+        <!-- ELIXIR BioHackathon 2022 -->
+        <div class="publication-card" data-type="hackathon" data-year="2022">
+          <div class="publication-header">
+            <div class="publication-icon hackathon">🚀</div>
+            <div style="flex: 1;">
+              <h3 class="publication-title">Leveraging articles from EuroPMC for uncovering biases in the literature</h3>
+              <div class="publication-meta">
+                <span class="publication-authors">Led by Victoria Ruiz-Serra, Beatriz Urda, Olivier Philippe</span>
+                <span class="publication-year">2022</span>
+              </div>
+            </div>
+          </div>
+          <div class="publication-tags">
+            <span class="tag">Hackathon</span>
+            <span class="tag">ELIXIR</span>
+            <span class="tag">BioHackathon</span>
+            <span class="tag">Literature Bias</span>
+            <span class="tag">EuroPMC</span>
+          </div>
+          <p class="publication-abstract">
+            This ELIXIR BioHackathon 2022 project aimed at analysing the scientific literature to uncover sex imbalance in published research. The project leveraged the EuroPMC repository to access and mine the context of free-text articles published there, identifying patterns of gender bias in scientific publications.
+          </p>
+          <div class="publication-links">
+            <a href="#" class="publication-link">📊 Project</a>
+          </div>
+        </div>
+        
+        <!-- Philippe et al. 2024 -->
+        <div class="publication-card" data-type="publication" data-year="2024">
+          <div class="publication-header">
+            <div class="publication-icon paper">📄</div>
+            <div style="flex: 1;">
+              <h3 class="publication-title">Abortion and Miscarriage on Twitter: Sentiment and Polarity Analysis from a gendered perspective</h3>
+              <div class="publication-meta">
+                <span class="publication-authors">Philippe et al.</span>
+                <span class="publication-year">2024</span>
+              </div>
+            </div>
+          </div>
+          <div class="publication-tags">
+            <span class="tag">Social Media</span>
+            <span class="tag">Sentiment Analysis</span>
+            <span class="tag">Gender</span>
+            <span class="tag">Reproductive Health</span>
+          </div>
+          <p class="publication-abstract">
+            This study performs sentiment and polarity analysis of Twitter discussions about abortion and miscarriage from a gendered perspective, providing insights into how these sensitive topics are discussed in social media and the role of gender in shaping these conversations.
+          </p>
+          <div class="publication-links">
+            <a href="https://doi.org/10.1145/3614419.3644010" target="_blank" class="publication-link">🔗 DOI</a>
+            <a href="https://dl.acm.org/doi/10.1145/3614419.3644010" target="_blank" class="publication-link">📄 Article</a>
+          </div>
+        </div>
+        
+        <!-- Buslón et al. 2023 -->
+        <div class="publication-card" data-type="publication" data-year="2023">
+          <div class="publication-header">
+            <div class="publication-icon paper">📄</div>
+            <div style="flex: 1;">
+              <h3 class="publication-title">Raising awareness of sex and gender bias in artificial intelligence and health</h3>
+              <div class="publication-meta">
+                <span class="publication-authors">Buslón et al.</span>
+                <span class="publication-year">2023</span>
+              </div>
+            </div>
+          </div>
+          <div class="publication-tags">
+            <span class="tag">AI Bias</span>
+            <span class="tag">Gender Bias</span>
+            <span class="tag">Health</span>
+            <span class="tag">Awareness</span>
+          </div>
+          <p class="publication-abstract">
+            This article raises awareness about sex and gender bias in artificial intelligence applications for health, discussing the implications and providing recommendations for developing more equitable AI systems in healthcare.
+          </p>
+          <div class="publication-links">
+            <a href="https://doi.org/10.3389/fgwh.2023.970312" target="_blank" class="publication-link">🔗 DOI</a>
+            <a href="https://www.frontiersin.org/articles/10.3389/fgwh.2023.970312" target="_blank" class="publication-link">📄 Article</a>
+          </div>
+        </div>
+        
+        <!-- Harms et al. 2022 -->
+        <div class="publication-card" data-type="publication" data-year="2022">
+          <div class="publication-header">
+            <div class="publication-icon paper">📄</div>
+            <div style="flex: 1;">
+              <h3 class="publication-title">Digital biomarkers and sex impacts in Alzheimer's disease management - potential utility for innovative 3P medicine approach</h3>
+              <div class="publication-meta">
+                <span class="publication-authors">Harms et al.</span>
+                <span class="publication-year">2022</span>
+              </div>
+            </div>
+          </div>
+          <div class="publication-tags">
+            <span class="tag">Digital Biomarkers</span>
+            <span class="tag">Alzheimer's Disease</span>
+            <span class="tag">Sex Differences</span>
+            <span class="tag">Personalized Medicine</span>
+          </div>
+          <p class="publication-abstract">
+            This research explores digital biomarkers and sex-specific impacts in Alzheimer's disease management, highlighting their potential utility for innovative predictive, preventive, and personalized (3P) medicine approaches.
+          </p>
+          <div class="publication-links">
+            <a href="https://doi.org/10.1007/s13167-022-00284-3" target="_blank" class="publication-link">🔗 DOI</a>
+            <a href="https://link.springer.com/article/10.1007/s13167-022-00284-3" target="_blank" class="publication-link">📄 Article</a>
+          </div>
+        </div>
+        
+        <!-- Cirillo et al. 2020 -->
+        <div class="publication-card" data-type="publication" data-year="2020">
+          <div class="publication-header">
+            <div class="publication-icon paper">📄</div>
+            <div style="flex: 1;">
+              <h3 class="publication-title">Sex and gender differences and biases in artificial intelligence for biomedicine and healthcare</h3>
+              <div class="publication-meta">
+                <span class="publication-authors">Cirillo et al.</span>
+                <span class="publication-year">2020</span>
+              </div>
+            </div>
+          </div>
+          <div class="publication-tags">
+            <span class="tag">AI Bias</span>
+            <span class="tag">Gender Differences</span>
+            <span class="tag">Biomedicine</span>
+            <span class="tag">Healthcare</span>
+          </div>
+          <p class="publication-abstract">
+            This foundational paper examines sex and gender differences and biases in artificial intelligence applications for biomedicine and healthcare, providing a comprehensive overview of the challenges and opportunities for developing more equitable AI systems.
+          </p>
+          <div class="publication-links">
+            <a href="https://doi.org/10.1038/s41746-020-0288-5" target="_blank" class="publication-link">🔗 DOI</a>
+            <a href="https://www.nature.com/articles/s41746-020-0288-5" target="_blank" class="publication-link">📄 Article</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="no-results" id="no-results" style="display: none;">
+        No results found. Try adjusting your search or filters.
+      </div>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -1987,7 +2812,7 @@
           navLinks.forEach(link => {
             link.style.color = '';
             if (link.getAttribute('href') === '#' + sectionId) {
-              link.style.color = '#5a3e85';
+              link.style.color = '#9645c0';
               link.style.fontWeight = '700';
             } else {
               link.style.fontWeight = '500';
@@ -2032,6 +2857,12 @@
         hero.classList.add(`hover-${word}`);
       });
     });
+    
+    // Auto-activate background after words light up
+    // Last word animation: delay 1.9s + duration 1.2s = 3.1s total
+    setTimeout(() => {
+      hero.classList.add('hover-women');
+    }, 3100);
 
     // ========================================
     // 8. Draggable Network Nodes with Inside-Circle Detection & Scroll Animation
@@ -2087,6 +2918,8 @@
       // Store node positions and dragging state
       let draggedNode = null;
       let offset = { x: 0, y: 0 };
+      let isDragging = false;
+      let dragStartPos = { x: 0, y: 0 };
       const nodeScales = new Map(); // Store scale for each node
       
       // Initialize scales
@@ -2149,6 +2982,9 @@
       nodes.forEach(node => {
         node.addEventListener('mousedown', (e) => {
           draggedNode = node;
+          isDragging = false;
+          dragStartPos.x = e.clientX;
+          dragStartPos.y = e.clientY;
           const rect = node.getBoundingClientRect();
           offset.x = e.clientX - rect.left;
           offset.y = e.clientY - rect.top;
@@ -2159,6 +2995,15 @@
       // Mouse move event - update position
       document.addEventListener('mousemove', (e) => {
         if (draggedNode) {
+          // Check if mouse has moved enough to consider it a drag
+          const moveDistance = Math.sqrt(
+            Math.pow(e.clientX - dragStartPos.x, 2) + 
+            Math.pow(e.clientY - dragStartPos.y, 2)
+          );
+          if (moveDistance > 5) {
+            isDragging = true;
+          }
+          
           const container = draggedNode.closest('.network-container');
           const containerRect = container.getBoundingClientRect();
           const x = e.clientX - containerRect.left;
@@ -2179,6 +3024,151 @@
       document.addEventListener('mouseup', () => {
         if (draggedNode) {
           draggedNode = null;
+          // Reset dragging flag after a short delay to allow click event to check it
+          setTimeout(() => {
+            isDragging = false;
+          }, 100);
+        }
+      });
+      
+      // Activity content data
+      const activityContent = {
+        mentoring: {
+          title: 'Mentoring',
+          content: `
+            <p>Our mentoring program connects experienced researchers with emerging scientists in computational biology, providing guidance and support throughout their career development.</p>
+            <p>We offer structured mentorship opportunities that focus on:</p>
+            <ul>
+              <li>Career development and transition from postdoc to independent positions</li>
+              <li>Research guidance and scientific methodology</li>
+              <li>Networking and collaboration opportunities</li>
+              <li>Work-life balance and professional growth</li>
+            </ul>
+          `
+        },
+        conferences: {
+          title: 'Conferences',
+          content: `
+            <p>We organize and participate in conferences that highlight the contributions of women in computational biology and bioinformatics.</p>
+            <p>Our conference activities include:</p>
+            <ul>
+              <li>Organizing dedicated sessions on gender equity in science</li>
+              <li>Showcasing research by women scientists</li>
+              <li>Providing networking opportunities for the community</li>
+              <li>Promoting best practices for inclusive research</li>
+            </ul>
+          `
+        },
+        fellows: {
+          title: 'Fellows Program',
+          content: `
+            <p>Our fellows program supports women researchers in computational biology through funding, resources, and mentorship.</p>
+            <p>The program includes:</p>
+            <ul>
+              <li>Research funding opportunities</li>
+              <li>Access to computational resources</li>
+              <li>Mentorship from established researchers</li>
+              <li>Professional development workshops</li>
+            </ul>
+          `
+        },
+        seminars: {
+          title: 'Seminars',
+          content: `
+            <p>We host regular seminars featuring outstanding women researchers in computational biology and related fields.</p>
+            <p>Our seminar series covers:</p>
+            <ul>
+              <li>Cutting-edge research presentations</li>
+              <li>Career development talks</li>
+              <li>Technical workshops and tutorials</li>
+              <li>Panel discussions on gender equity in science</li>
+            </ul>
+          `
+        },
+        openday: {
+          title: 'Open Day',
+          content: `
+            <p>Our Open Day events provide opportunities for the broader community to learn about our work and get involved.</p>
+            <p>Open Day activities include:</p>
+            <ul>
+              <li>Lab tours and demonstrations</li>
+              <li>Interactive workshops</li>
+              <li>Networking sessions</li>
+              <li>Information about joining our community</li>
+            </ul>
+          `
+        },
+        networking: {
+          title: 'Networking',
+          content: `
+            <p>We facilitate networking opportunities to connect women researchers across institutions and disciplines.</p>
+            <p>Our networking initiatives include:</p>
+            <ul>
+              <li>Regular meetups and social events</li>
+              <li>Online community platforms</li>
+              <li>Collaboration matching</li>
+              <li>International connections and partnerships</li>
+            </ul>
+          `
+        },
+        community: {
+          title: 'Community Building',
+          content: `
+            <p>We work to build a supportive and inclusive community for women in computational biology.</p>
+            <p>Our community building efforts focus on:</p>
+            <ul>
+              <li>Creating safe spaces for discussion and collaboration</li>
+              <li>Promoting diversity and inclusion</li>
+              <li>Supporting early-career researchers</li>
+              <li>Fostering long-term professional relationships</li>
+            </ul>
+          `
+        }
+      };
+      
+      // Click handler for activity info window
+      const activityInfoWindow = document.getElementById('activity-info-window');
+      const activityOverlay = document.getElementById('activity-overlay');
+      const activityInfoContent = document.getElementById('activity-info-content');
+      
+      function openActivityInfo(activityKey) {
+        const activity = activityContent[activityKey];
+        if (activity) {
+          activityInfoContent.innerHTML = `<h3>${activity.title}</h3>${activity.content}`;
+          activityInfoWindow.classList.add('active');
+          activityOverlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+      
+      function closeActivityInfoWindow() {
+        activityInfoWindow.classList.remove('active');
+        activityOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      
+      // Add click handlers to nodes (but not when dragging)
+      nodes.forEach(node => {
+        node.addEventListener('click', (e) => {
+          // Only open info if not dragging
+          if (!isDragging) {
+            const activityKey = node.getAttribute('data-activity');
+            if (activityKey) {
+              openActivityInfo(activityKey);
+            }
+          }
+        });
+      });
+      
+      // Close handlers
+      if (activityOverlay) {
+        activityOverlay.addEventListener('click', closeActivityInfoWindow);
+      }
+      
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && activityInfoWindow.classList.contains('active')) {
+          closeActivityInfoWindow();
         }
       });
       
@@ -2240,8 +3230,8 @@
     // ========================================
     // 9. Console Welcome Message (Fun Easter Egg)
     // ========================================
-    console.log('%c🧬 Welcome to Bioinfo4Women! 🧬', 'color: #667eea; font-size: 20px; font-weight: bold;');
-    console.log('%cInterested in bioinformatics for women\'s health? Join us!', 'color: #764ba2; font-size: 14px;');
+    console.log('%c🧬 Welcome to Bioinfo4Women! 🧬', 'color: #9645c0; font-size: 20px; font-weight: bold;');
+    console.log('%cInterested in bioinformatics for women\'s health? Join us!', 'color: #7384c1; font-size: 14px;');
     // ========================================
     // Team Section - Name Display on Hover
     // ========================================
@@ -2261,6 +3251,163 @@
         });
       });
     }
+    
+    // ========================================
+    // Publications Section - Filter, Search, and Interactions
+    // ========================================
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const publicationCards = document.querySelectorAll('.publication-card');
+    const searchInput = document.getElementById('publications-search');
+    const publicationsGrid = document.getElementById('publications-grid');
+    const noResults = document.getElementById('no-results');
+    const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+    
+    let currentFilter = 'all';
+    let currentSearch = '';
+    
+    // Count publications by type
+    function updateStats() {
+      const counts = {
+        publication: 0,
+        resource: 0,
+        hackathon: 0
+      };
+      
+      publicationCards.forEach(card => {
+        const type = card.getAttribute('data-type');
+        if (type && counts.hasOwnProperty(type)) {
+          counts[type]++;
+        }
+      });
+      
+      // Animate stat numbers
+      statNumbers.forEach(stat => {
+        const label = stat.parentElement.querySelector('.stat-label').textContent.toLowerCase();
+        let targetCount = 0;
+        
+        if (label.includes('publication')) {
+          targetCount = counts.publication;
+        } else if (label.includes('resource')) {
+          targetCount = counts.resource;
+        } else if (label.includes('hackathon')) {
+          targetCount = counts.hackathon;
+        }
+        
+        animateValue(stat, 0, targetCount, 1000);
+      });
+    }
+    
+    // Animate number counting
+    function animateValue(element, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const current = Math.floor(progress * (end - start) + start);
+        element.textContent = current;
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+    
+    // Filter publications
+    function filterPublications() {
+      let visibleCount = 0;
+      
+      publicationCards.forEach(card => {
+        const type = card.getAttribute('data-type');
+        const title = card.querySelector('.publication-title').textContent.toLowerCase();
+        const abstract = card.querySelector('.publication-abstract').textContent.toLowerCase();
+        const authors = card.querySelector('.publication-authors').textContent.toLowerCase();
+        const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase()).join(' ');
+        
+        const matchesFilter = currentFilter === 'all' || type === currentFilter;
+        const matchesSearch = !currentSearch || 
+          title.includes(currentSearch) || 
+          abstract.includes(currentSearch) || 
+          authors.includes(currentSearch) ||
+          tags.includes(currentSearch);
+        
+        if (matchesFilter && matchesSearch) {
+          card.style.display = 'block';
+          visibleCount++;
+          // Add fade-in animation
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 10);
+        } else {
+          card.style.display = 'none';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+        }
+      });
+      
+      // Show/hide no results message
+      if (visibleCount === 0) {
+        noResults.style.display = 'block';
+        publicationsGrid.style.display = 'none';
+      } else {
+        noResults.style.display = 'none';
+        publicationsGrid.style.display = 'grid';
+      }
+    }
+    
+    // Filter button clicks
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.getAttribute('data-filter');
+        filterPublications();
+      });
+    });
+    
+    // Search input
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        currentSearch = e.target.value.toLowerCase().trim();
+        filterPublications();
+      });
+    }
+    
+    // Expand/collapse abstracts
+    publicationCards.forEach(card => {
+      const abstract = card.querySelector('.publication-abstract');
+      if (abstract && abstract.scrollHeight > abstract.clientHeight) {
+        const expandBtn = document.createElement('button');
+        expandBtn.className = 'expand-btn';
+        expandBtn.textContent = 'Read more';
+        expandBtn.addEventListener('click', () => {
+          card.classList.toggle('expanded');
+          expandBtn.textContent = card.classList.contains('expanded') ? 'Read less' : 'Read more';
+        });
+        abstract.parentElement.insertBefore(expandBtn, abstract.nextSibling);
+      }
+    });
+    
+    // Initialize stats on load
+    if (publicationCards.length > 0) {
+      // Wait for section to be visible
+      const publicationsSection = document.getElementById('publications');
+      if (publicationsSection) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              updateStats();
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        observer.observe(publicationsSection);
+      }
+    }
+    
+    // Initial filter
+    filterPublications();
   </script>
 </body>
 </html>
