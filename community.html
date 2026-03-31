@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bioinfo4Women · Community Building</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; color: #2d3748; background: linear-gradient(135deg, rgba(150,69,192,0.08), rgba(115,132,193,0.08), rgba(79,194,194,0.08)); }
+    .hero-banner { position: relative; min-height: 56vh; display: flex; align-items: flex-end; background-image: linear-gradient(130deg, rgba(150,69,192,0.62), rgba(115,132,193,0.55), rgba(79,194,194,0.45)), url("images/team/coordinator14.jpg"); background-size: cover; background-position: center; color: #fff; padding: 2rem 2rem 3rem; }
+    .hero-top-nav { position: absolute; top: 1.2rem; left: 2rem; display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .back-link { text-decoration: none; color: #fff; font-weight: 600; border: 1px solid rgba(255,255,255,0.45); border-radius: 999px; padding: 0.45rem 0.95rem; background: rgba(16,20,26,0.28); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+    .hero-content { max-width: 960px; }
+    h1 { font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.08; margin-bottom: 0.55rem; letter-spacing: -0.02em; }
+    .subtitle { font-size: clamp(1rem, 1.8vw, 1.22rem); max-width: 760px; }
+    .page-content { width: 100%; padding: 2.8rem 2rem 4rem; background: rgba(238,244,247,0.72); }
+    .section { max-width: 1060px; margin: 0 auto 2.5rem; padding-bottom: 1.4rem; border-bottom: 1px solid rgba(115,132,193,0.2); }
+    .section:last-child { border-bottom: none; }
+    .section h2 { font-size: 1.5rem; color: #1d1d1f; margin-bottom: 0.7rem; }
+    .section p { color: #4a5568; line-height: 1.8; font-size: 1.03rem; margin-bottom: 0.8rem; max-width: 880px; }
+    .text-with-image { display: grid; grid-template-columns: 1fr 320px; gap: 2rem; align-items: start; }
+    .text-with-image.reverse { grid-template-columns: 320px 1fr; }
+    .text-with-image.reverse .text-col { order: 2; }
+    .text-with-image.reverse .circle-image { order: 1; justify-self: start; margin-left: -90px; margin-right: 0; }
+    .circle-image { width: 320px; height: 320px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(79,194,194,0.35); box-shadow: 0 8px 22px rgba(0,0,0,0.12); justify-self: end; margin-right: -90px; }
+    @media (max-width: 860px) {
+      .hero-banner { min-height: 50vh; padding: 1.4rem 1.2rem 2rem; }
+      .hero-top-nav { left: 1.2rem; top: 1rem; }
+      .page-content { padding: 2rem 1.2rem 3rem; }
+      .text-with-image, .text-with-image.reverse { grid-template-columns: 1fr; }
+      .text-with-image.reverse .text-col, .text-with-image.reverse .circle-image { order: initial; }
+      .circle-image { width: 190px; height: 190px; margin-right: 0; margin-left: 0; justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero-banner">
+    <nav class="hero-top-nav">
+      <a href="index.html#research" class="back-link">← Back to Activities</a>
+      <a href="index.html" class="back-link">Back to Home</a>
+    </nav>
+    <div class="hero-content">
+      <h1>Community Building</h1>
+      <p class="subtitle">Creating a supportive, collaborative, and inclusive network for women in computational biology.</p>
+    </div>
+  </header>
+  <main class="page-content">
+    <section class="section">
+      <div class="text-with-image">
+        <div class="text-col">
+          <h2>Shared Purpose</h2>
+          <p>Community building provides a social and scientific foundation where researchers can connect, exchange ideas, and find support at all career stages.</p>
+          <p>Our activities foster belonging, confidence, and long-term collaboration.</p>
+        </div>
+        <img src="images/team/coordinator14.jpg" alt="Community session" class="circle-image">
+      </div>
+    </section>
+    <section class="section">
+      <div class="text-with-image reverse">
+        <img src="images/team/coordinator15.jpg" alt="Peer support" class="circle-image">
+        <div class="text-col">
+          <h2>Peer Support Spaces</h2>
+          <p>We organize spaces where participants can discuss challenges openly, share practical advice, and identify collective solutions for scientific and professional growth.</p>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="text-with-image">
+        <div class="text-col">
+          <h2>Sustainable Collaboration</h2>
+          <p>By strengthening relationships across groups and disciplines, the community generates opportunities for mentorship, training, co-authorship, and project development.</p>
+        </div>
+        <img src="images/team/coordinator16.jpg" alt="Collaborative science" class="circle-image">
+      </div>
+    </section>
+  </main>
+</body>
+</html>

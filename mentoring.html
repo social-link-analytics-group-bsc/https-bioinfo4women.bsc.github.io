@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bioinfo4Women · Mentoring</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; color: #2d3748; background: linear-gradient(135deg, rgba(150,69,192,0.08), rgba(115,132,193,0.08), rgba(79,194,194,0.08)); }
+    .hero-banner { position: relative; min-height: 56vh; display: flex; align-items: flex-end; background-image: linear-gradient(130deg, rgba(150,69,192,0.62), rgba(115,132,193,0.55), rgba(79,194,194,0.45)), url("images/team/coordinator1.jpg"); background-size: cover; background-position: center; color: #fff; padding: 2rem 2rem 3rem; }
+    .hero-top-nav { position: absolute; top: 1.2rem; left: 2rem; display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .back-link { text-decoration: none; color: #fff; font-weight: 600; border: 1px solid rgba(255,255,255,0.45); border-radius: 999px; padding: 0.45rem 0.95rem; background: rgba(16,20,26,0.28); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+    .hero-content { max-width: 960px; }
+    h1 { font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.08; margin-bottom: 0.55rem; letter-spacing: -0.02em; }
+    .subtitle { font-size: clamp(1rem, 1.8vw, 1.22rem); max-width: 760px; }
+    .page-content { width: 100%; padding: 2.8rem 2rem 4rem; background: rgba(238,244,247,0.72); }
+    .section { max-width: 1060px; margin: 0 auto 2.5rem; padding-bottom: 1.4rem; border-bottom: 1px solid rgba(115,132,193,0.2); }
+    .section:last-child { border-bottom: none; }
+    .section h2 { font-size: 1.5rem; color: #1d1d1f; margin-bottom: 0.7rem; }
+    .section p { color: #4a5568; line-height: 1.8; font-size: 1.03rem; margin-bottom: 0.8rem; max-width: 880px; }
+    .text-with-image { display: grid; grid-template-columns: 1fr 320px; gap: 2rem; align-items: start; }
+    .text-with-image.reverse { grid-template-columns: 320px 1fr; }
+    .text-with-image.reverse .text-col { order: 2; }
+    .text-with-image.reverse .circle-image { order: 1; justify-self: start; margin-left: -90px; margin-right: 0; }
+    .circle-image { width: 320px; height: 320px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(150,69,192,0.35); box-shadow: 0 8px 22px rgba(0,0,0,0.12); justify-self: end; margin-right: -90px; }
+    @media (max-width: 860px) {
+      .hero-banner { min-height: 50vh; padding: 1.4rem 1.2rem 2rem; }
+      .hero-top-nav { left: 1.2rem; top: 1rem; }
+      .page-content { padding: 2rem 1.2rem 3rem; }
+      .text-with-image, .text-with-image.reverse { grid-template-columns: 1fr; }
+      .text-with-image.reverse .text-col, .text-with-image.reverse .circle-image { order: initial; }
+      .circle-image { width: 190px; height: 190px; margin-right: 0; margin-left: 0; justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero-banner">
+    <nav class="hero-top-nav">
+      <a href="index.html#research" class="back-link">← Back to Activities</a>
+      <a href="index.html" class="back-link">Back to Home</a>
+    </nav>
+    <div class="hero-content">
+      <h1>Mentoring Programme</h1>
+      <p class="subtitle">Support for career growth, scientific leadership, and transition to independence.</p>
+    </div>
+  </header>
+  <main class="page-content">
+    <section class="section">
+      <div class="text-with-image">
+        <div class="text-col">
+          <h2>Programme Overview</h2>
+          <p>Our mentoring programme pairs early-career and mid-career researchers with experienced mentors in computational biology. The goal is to support professional development through practical guidance, personalized feedback, and sustained community support.</p>
+          <p>Each cycle includes clear objectives, periodic follow-up, and tailored support based on each participant’s career stage and scientific focus.</p>
+        </div>
+        <img src="images/team/coordinator3.jpg" alt="Career guidance session" class="circle-image">
+      </div>
+    </section>
+    <section class="section">
+      <div class="text-with-image reverse">
+        <img src="images/team/coordinator5.jpg" alt="Mentoring meeting" class="circle-image">
+        <div class="text-col">
+          <h2>Regular Mentor-Mentee Follow-up</h2>
+          <p>Structured follow-up meetings provide a safe space to discuss challenges, opportunities, and concrete action plans throughout the year.</p>
+          <p>Participants define personal goals such as leadership progression, publication strategy, and transition planning to independent positions.</p>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="text-with-image">
+        <div class="text-col">
+          <h2>Skills and Leadership Development</h2>
+          <p>The programme includes practical sessions on grant writing, scientific communication, collaboration building, and team management.</p>
+        </div>
+        <img src="images/team/coordinator7.jpg" alt="Leadership workshop" class="circle-image">
+      </div>
+    </section>
+  </main>
+</body>
+</html>

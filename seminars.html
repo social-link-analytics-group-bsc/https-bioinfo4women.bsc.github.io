@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bioinfo4Women · Seminars</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #2d3748;
+      line-height: 1.6;
+      background: linear-gradient(135deg, rgba(150,69,192,0.08), rgba(115,132,193,0.08), rgba(79,194,194,0.08));
+    }
+    .hero-banner {
+      position: relative;
+      min-height: 56vh;
+      display: flex;
+      align-items: flex-end;
+      background-image: linear-gradient(130deg, rgba(150, 69, 192, 0.62), rgba(115, 132, 193, 0.55), rgba(79, 194, 194, 0.45)), url("images/team/coordinator8.jpg");
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 2rem 2rem 3rem;
+    }
+    .hero-top-nav {
+      position: absolute;
+      top: 1.2rem;
+      left: 2rem;
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .back-link {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 999px;
+      padding: 0.45rem 0.95rem;
+      background: rgba(16, 20, 26, 0.28);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .hero-content { max-width: 960px; }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.55rem;
+    }
+    .subtitle {
+      font-size: clamp(1rem, 1.8vw, 1.22rem);
+      max-width: 780px;
+      opacity: 0.98;
+    }
+    .page-content {
+      width: 100%;
+      padding: 2.6rem 2rem 4rem;
+      background: rgba(238, 244, 247, 0.72);
+    }
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+    .filters {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr 0.9fr;
+      gap: 0.8rem;
+      margin-bottom: 1.25rem;
+    }
+    .search-input,
+    .select-input {
+      width: 100%;
+      border: 1.5px solid rgba(115, 132, 193, 0.3);
+      border-radius: 999px;
+      padding: 0.7rem 1rem;
+      background: rgba(255,255,255,0.88);
+      color: #2d3748;
+      font-size: 0.97rem;
+    }
+    .search-input:focus,
+    .select-input:focus {
+      outline: none;
+      border-color: #9645c0;
+      box-shadow: 0 0 0 3px rgba(150,69,192,0.1);
+    }
+    .result-count {
+      margin-bottom: 1rem;
+      color: #5e6775;
+      font-size: 0.95rem;
+    }
+    .seminar-list {
+      display: grid;
+      gap: 1rem;
+    }
+    .seminar-card {
+      --splash-a: rgba(150, 69, 192, 0.30);
+      --splash-b: rgba(79, 194, 194, 0.28);
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 1.1rem;
+      align-items: start;
+      padding: 1.1rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .seminar-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.9;
+      z-index: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      background-image: var(--splash-gradients, none);
+      background-repeat: no-repeat;
+    }
+    .seminar-card:hover::before {
+      transform: scale(1.04);
+      opacity: 1;
+    }
+    .seminar-card > * {
+      position: relative;
+      z-index: 1;
+    }
+    .speaker-photo {
+      width: 170px;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 2px solid rgba(115, 132, 193, 0.35);
+      background: #e8edf9;
+    }
+    .talk-title {
+      font-size: 1.18rem;
+      color: #1d1d1f;
+      margin-bottom: 0.35rem;
+      line-height: 1.35;
+    }
+    .meta {
+      font-size: 0.93rem;
+      color: #646b76;
+      margin-bottom: 0.55rem;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+    .chip {
+      display: inline-block;
+      font-size: 0.78rem;
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(79,194,194,0.14);
+      color: #2f7a7a;
+      font-weight: 600;
+    }
+    .abstract { color: #4a5568; font-size: 0.98rem; }
+    .empty-state {
+      display: none;
+      text-align: center;
+      color: #5e6775;
+      padding: 2rem 0;
+    }
+    @media (max-width: 860px) {
+      .hero-banner { min-height: 50vh; padding: 1.4rem 1.2rem 2rem; }
+      .hero-top-nav { left: 1.2rem; top: 1rem; }
+      .page-content { padding: 2rem 1.2rem 3rem; }
+      .filters { grid-template-columns: 1fr; }
+      .seminar-card { grid-template-columns: 1fr; }
+      .speaker-photo { width: 100%; height: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero-banner">
+    <nav class="hero-top-nav">
+      <a href="index.html#research" class="back-link">← Back to Activities</a>
+      <a href="index.html" class="back-link">Back to Home</a>
+    </nav>
+    <div class="hero-content">
+      <h1>Seminars Index</h1>
+      <p class="subtitle">
+        Browse and search seminars by year, topic, and keywords. This page is ready to grow as your seminar archive expands.
+      </p>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="container">
+      <div class="filters">
+        <input type="text" id="seminar-search" class="search-input" placeholder="Search by title, speaker, abstract..." />
+        <select id="year-filter" class="select-input"></select>
+        <select id="topic-filter" class="select-input"></select>
+      </div>
+      <p class="result-count" id="result-count"></p>
+      <section class="seminar-list" id="seminar-list"></section>
+      <p class="empty-state" id="empty-state">No seminars match the current filters.</p>
+    </div>
+  </main>
+  <script>
+    const seminars = [
+      {
+        speaker: "Dr. Elena Ruiz",
+        photo: "images/team/coordinator2.jpg",
+        title: "Bias-Aware AI Pipelines for Women's Health Data",
+        date: "2026-02-12",
+        topics: ["AI", "Bias", "Women's Health"],
+        abstract:
+          "This seminar introduces practical strategies to detect and mitigate sex and gender bias in end-to-end AI workflows for clinical prediction tasks. We discuss dataset curation, fairness metrics, and model auditing in translational bioinformatics settings."
+      },
+      {
+        speaker: "Dr. Marta Soler",
+        photo: "images/team/coordinator5.jpg",
+        title: "Single-Cell Multiomics in Reproductive Health Research",
+        date: "2026-01-23",
+        topics: ["Single-cell", "Multiomics", "Reproductive Health"],
+        abstract:
+          "A hands-on overview of computational methods for integrating transcriptomic and epigenomic single-cell data. The talk highlights how multiomics can uncover sex-specific biological mechanisms and improve personalized medicine hypotheses."
+      },
+      {
+        speaker: "Prof. Laura Mendez",
+        photo: "images/team/coordinator8.jpg",
+        title: "From Open Data to Actionable Insights: A Practical Seminar",
+        date: "2025-12-05",
+        topics: ["Open Science", "Data Integration", "Reproducibility"],
+        abstract:
+          "This session explores reproducible workflows for harmonizing public biomedical datasets and turning them into robust analyses. We focus on transparency, metadata quality, and fair representation across sex and gender dimensions."
+      },
+      {
+        speaker: "Dr. Clara Navas",
+        photo: "images/team/coordinator4.jpg",
+        title: "NLP for Biomedical Evidence Mapping",
+        date: "2025-07-19",
+        topics: ["NLP", "Biomedicine", "Literature Mining"],
+        abstract:
+          "An applied session on extracting structured evidence from biomedical texts, with practical examples for topic detection and fairness-aware annotation."
+      }
+    ];
+
+    const searchInput = document.getElementById("seminar-search");
+    const yearFilter = document.getElementById("year-filter");
+    const topicFilter = document.getElementById("topic-filter");
+    const resultCount = document.getElementById("result-count");
+    const emptyState = document.getElementById("empty-state");
+    
+    function randomizeCardSplashes(cards) {
+      const palette = ['150, 69, 192', '79, 194, 194'];
+      
+      cards.forEach((card) => {
+        const splashCount = 1 + Math.floor(Math.random() * 4);
+        const gradients = [];
+        
+        for (let i = 0; i < splashCount; i++) {
+          const rgb = palette[Math.floor(Math.random() * palette.length)];
+          const x = 8 + Math.random() * 84;
+          const y = 8 + Math.random() * 84;
+          const size = 46 + Math.random() * 90;
+          const alpha = 0.12 + Math.random() * 0.18;
+          gradients.push(
+            `radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(${rgb}, ${alpha.toFixed(2)}) 0%, rgba(${rgb}, 0) 72%)`
+          );
+        }
+        
+        card.style.setProperty("--splash-gradients", gradients.join(", "));
+      });
+    }
+
+    function getYear(dateStr) {
+      return String(new Date(dateStr).getFullYear());
+    }
+
+    function setupFilters() {
+      const years = [...new Set(seminars.map((s) => getYear(s.date)))].sort((a, b) => Number(b) - Number(a));
+      const topics = [...new Set(seminars.flatMap((s) => s.topics))].sort((a, b) => a.localeCompare(b));
+
+      yearFilter.innerHTML = `<option value="all">All years</option>${years.map((y) => `<option value="${y}">${y}</option>`).join("")}`;
+      topicFilter.innerHTML = `<option value="all">All topics</option>${topics.map((t) => `<option value="${t}">${t}</option>`).join("")}`;
+    }
+
+    function renderSeminars(items) {
+      const list = document.getElementById("seminar-list");
+      if (!list) return;
+
+      resultCount.textContent = `${items.length} seminar${items.length === 1 ? "" : "s"} found`;
+      emptyState.style.display = items.length === 0 ? "block" : "none";
+
+      list.innerHTML = items
+        .map(
+          (seminar) => `
+            <article class="seminar-card">
+              <img class="speaker-photo" src="${seminar.photo}" alt="${seminar.speaker}" />
+              <div>
+                <h2 class="talk-title">${seminar.title}</h2>
+                <p class="meta"><strong>Speaker:</strong> ${seminar.speaker} · <strong>Date:</strong> ${seminar.date} · <strong>Year:</strong> ${getYear(seminar.date)}</p>
+                <div class="chips">
+                  ${seminar.topics.map((topic) => `<span class="chip">${topic}</span>`).join("")}
+                </div>
+                <p class="abstract">${seminar.abstract}</p>
+              </div>
+            </article>
+          `
+        )
+        .join("");
+      
+      randomizeCardSplashes(list.querySelectorAll(".seminar-card"));
+    }
+
+    function applyFilters() {
+      const query = searchInput.value.trim().toLowerCase();
+      const selectedYear = yearFilter.value;
+      const selectedTopic = topicFilter.value;
+
+      const filtered = seminars.filter((seminar) => {
+        const matchesYear = selectedYear === "all" || getYear(seminar.date) === selectedYear;
+        const matchesTopic = selectedTopic === "all" || seminar.topics.includes(selectedTopic);
+        const haystack = `${seminar.title} ${seminar.speaker} ${seminar.abstract} ${seminar.topics.join(" ")}`.toLowerCase();
+        const matchesSearch = query === "" || haystack.includes(query);
+        return matchesYear && matchesTopic && matchesSearch;
+      });
+
+      renderSeminars(filtered);
+    }
+
+    setupFilters();
+    renderSeminars(seminars);
+    searchInput.addEventListener("input", applyFilters);
+    yearFilter.addEventListener("change", applyFilters);
+    topicFilter.addEventListener("change", applyFilters);
+  </script>
+</body>
+</html>

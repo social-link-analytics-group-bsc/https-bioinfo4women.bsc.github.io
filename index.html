@@ -1457,41 +1457,35 @@
       overflow: hidden;
     }
     
+    .publication-card {
+      --splash-a: rgba(150, 69, 192, 0.30);
+      --splash-b: rgba(150, 69, 192, 0.20);
+    }
+    
     .publication-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(135deg, #9645c0 0%, #9645c0 100%);
-      transform: scaleY(0);
-      transition: transform 0.3s ease;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      opacity: 0.9;
+      background-image: var(--splash-gradients, none);
+      background-repeat: no-repeat;
     }
     
     /* Color coding for different types */
-    .publication-card[data-type="publication"]::before {
-      background: linear-gradient(135deg, #9645c0 0%, #9645c0 100%);
-    }
-    
-    .publication-card[data-type="resource"]::before {
-      background: linear-gradient(135deg, #7384c1 0%, #7384c1 100%);
-    }
-    
-    .publication-card[data-type="hackathon"]::before {
-      background: linear-gradient(135deg, #4fc2c2 0%, #4fc2c2 100%);
-    }
-    
     .publication-card[data-type="publication"] {
-      border-left: 4px solid #9645c0;
+      --splash-a: rgba(150, 69, 192, 0.30);
+      --splash-b: rgba(150, 69, 192, 0.20);
     }
-    
     .publication-card[data-type="resource"] {
-      border-left: 4px solid #7384c1;
+      --splash-a: rgba(115, 132, 193, 0.30);
+      --splash-b: rgba(115, 132, 193, 0.20);
     }
-    
     .publication-card[data-type="hackathon"] {
-      border-left: 4px solid #4fc2c2;
+      --splash-a: rgba(79, 194, 194, 0.30);
+      --splash-b: rgba(79, 194, 194, 0.20);
     }
     
     .publication-card:hover {
@@ -1500,20 +1494,14 @@
                   0 8px 20px rgba(0, 0, 0, 0.08);
     }
     
-    .publication-card[data-type="publication"]:hover {
-      border-color: rgba(150, 69, 192, 0.3);
-    }
-    
-    .publication-card[data-type="resource"]:hover {
-      border-color: rgba(115, 132, 193, 0.3);
-    }
-    
-    .publication-card[data-type="hackathon"]:hover {
-      border-color: rgba(79, 194, 194, 0.3);
-    }
-    
     .publication-card:hover::before {
-      transform: scaleY(1);
+      transform: scale(1.04);
+      opacity: 1;
+    }
+    
+    .publication-card > * {
+      position: relative;
+      z-index: 1;
     }
     
     .publication-header {
@@ -2638,12 +2626,12 @@
       <h3>Contact Us</h3>
       <p>Get in touch to learn more about our research or explore collaboration opportunities.</p>
       <p style="margin-top: 2rem;">
-        <a href="mailto:contact@bioinfo4women.org">contact@bioinfo4women.org</a>
+        <a href="mailto:contact@bioinfo4women.org">bioinfo4women@bsc.es</a>
+        <p style="margin-top: 2rem; font-size: 0.875rem; color: #a0aec0;">
+          © 2025 Bioinfo4Women. All rights reserved.<br>Page design: Othmane Hayoun-Mya.
+        </p>
       </p>
-      <p style="margin-top: 2rem; font-size: 0.875rem; color: #a0aec0;">
-        © 2025 Bioinfo4Women. All rights reserved.
-      </p>
-  </div>
+    </div>
   </footer>
 
   <script>
@@ -3154,6 +3142,20 @@
           if (!isDragging) {
             const activityKey = node.getAttribute('data-activity');
             if (activityKey) {
+              const activityPages = {
+                mentoring: 'mentoring.html',
+                conferences: 'conferences.html',
+                fellows: 'fellows.html',
+                seminars: 'seminars.html',
+                openday: 'openday.html',
+                networking: 'networking.html',
+                community: 'community.html'
+              };
+
+              if (activityPages[activityKey]) {
+                window.location.href = activityPages[activityKey];
+                return;
+              }
               openActivityInfo(activityKey);
             }
           }
@@ -3264,6 +3266,33 @@
     
     let currentFilter = 'all';
     let currentSearch = '';
+    
+    function randomizeCardSplashes(cards) {
+      const colorMap = {
+        publication: '150, 69, 192',
+        resource: '115, 132, 193',
+        hackathon: '79, 194, 194'
+      };
+      
+      cards.forEach(card => {
+        const type = card.getAttribute('data-type');
+        const rgb = colorMap[type] || colorMap.publication;
+        const splashCount = 1 + Math.floor(Math.random() * 4);
+        const gradients = [];
+        
+        for (let i = 0; i < splashCount; i++) {
+          const x = 8 + Math.random() * 84;
+          const y = 8 + Math.random() * 84;
+          const size = 46 + Math.random() * 90;
+          const alpha = 0.12 + Math.random() * 0.18;
+          gradients.push(
+            `radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(${rgb}, ${alpha.toFixed(2)}) 0%, rgba(${rgb}, 0) 72%)`
+          );
+        }
+        
+        card.style.setProperty('--splash-gradients', gradients.join(', '));
+      });
+    }
     
     // Count publications by type
     function updateStats() {
@@ -3407,6 +3436,7 @@
     }
     
     // Initial filter
+    randomizeCardSplashes(publicationCards);
     filterPublications();
   </script>
 </body>
