@@ -97,10 +97,7 @@
     .seminar-card {
       --splash-a: rgba(150, 69, 192, 0.30);
       --splash-b: rgba(79, 194, 194, 0.28);
-      display: grid;
-      grid-template-columns: 170px 1fr;
-      gap: 1.1rem;
-      align-items: start;
+      display: block;
       padding: 1.1rem;
       border-radius: 16px;
       background: rgba(255, 255, 255, 0.92);
@@ -127,14 +124,6 @@
     .seminar-card > * {
       position: relative;
       z-index: 1;
-    }
-    .speaker-photo {
-      width: 170px;
-      height: 170px;
-      object-fit: cover;
-      border-radius: 14px;
-      border: 2px solid rgba(115, 132, 193, 0.35);
-      background: #e8edf9;
     }
     .talk-title {
       font-size: 1.18rem;
@@ -174,8 +163,6 @@
       .hero-top-nav { left: 1.2rem; top: 1rem; }
       .page-content { padding: 2rem 1.2rem 3rem; }
       .filters { grid-template-columns: 1fr; }
-      .seminar-card { grid-template-columns: 1fr; }
-      .speaker-photo { width: 100%; height: 220px; }
     }
   </style>
 </head>
@@ -186,9 +173,9 @@
       <a href="index.html" class="back-link">Back to Home</a>
     </nav>
     <div class="hero-content">
-      <h1>Seminars Index</h1>
+      <h1>Severo Ochoa Seminars List</h1>
       <p class="subtitle">
-        Browse and search seminars by year, topic, and keywords. This page is ready to grow as your seminar archive expands.
+        Browse and search seminars by year, topic, and keywords. This page is ready to grow as our seminar archive expands.
       </p>
     </div>
   </header>
@@ -208,40 +195,124 @@
   <script>
     const seminars = [
       {
-        speaker: "Dr. Elena Ruiz",
-        photo: "images/team/coordinator2.jpg",
-        title: "Bias-Aware AI Pipelines for Women's Health Data",
-        date: "2026-02-12",
-        topics: ["AI", "Bias", "Women's Health"],
+        speaker: "Shireen Sindi",
+        title: "Sex and Gender Differences in Dementia and Alzheimer's Disease",
+        date: "2024-05-30",
+        host: "Davide Cirillo",
+        topics: ["Dementia", "Alzheimer's Disease", "Sex and Gender"],
         abstract:
-          "This seminar introduces practical strategies to detect and mitigate sex and gender bias in end-to-end AI workflows for clinical prediction tasks. We discuss dataset curation, fairness metrics, and model auditing in translational bioinformatics settings."
+          "The lecture covers sex differences in dementia epidemiology, factors driving these differences, and current evidence on sex and gender in dementia risk and protective factors.",
+        link: "https://bioinfo4women.bsc.es/research-seminars/sex-and-gender-differences-in-dementia-and-alzheimers-disease/"
       },
       {
-        speaker: "Dr. Marta Soler",
-        photo: "images/team/coordinator5.jpg",
-        title: "Single-Cell Multiomics in Reproductive Health Research",
-        date: "2026-01-23",
-        topics: ["Single-cell", "Multiomics", "Reproductive Health"],
+        speaker: "Galadriel Brière",
+        title: "Random Walk with Restart on multilayer networks: from node prioritisation to supervised link prediction and beyond",
+        date: "2024-05-28",
+        host: "Alfonso Valencia",
+        topics: ["Networks", "Multilayer Models", "Computational Biology"],
         abstract:
-          "A hands-on overview of computational methods for integrating transcriptomic and epigenomic single-cell data. The talk highlights how multiomics can uncover sex-specific biological mechanisms and improve personalized medicine hypotheses."
+          "How multilayer biological networks integrate heterogeneous data and enable advanced methods from node prioritization to link prediction.",
+        link: "https://bioinfo4women.bsc.es/research-seminars/random-walk-with-restart-on-multilayer-networks-from-node-prioritisation-to-supervised-link-prediction-and-beyond/"
       },
       {
-        speaker: "Prof. Laura Mendez",
-        photo: "images/team/coordinator8.jpg",
-        title: "From Open Data to Actionable Insights: A Practical Seminar",
-        date: "2025-12-05",
-        topics: ["Open Science", "Data Integration", "Reproducibility"],
+        speaker: "Mercè Botinas i Martí",
+        title: "Diferencias y Desigualdades: Realidad o Ficción. Invitación a La medicina con Visión de Género.",
+        date: "2024-05-23",
+        host: "Alba Jené",
+        topics: ["Gender Medicine", "Health Equity", "Clinical Practice"],
         abstract:
-          "This session explores reproducible workflows for harmonizing public biomedical datasets and turning them into robust analyses. We focus on transparency, metadata quality, and fair representation across sex and gender dimensions."
+          "A critical discussion on persistent sex and gender bias in medicine and the need for evidence-based gender perspective in healthcare.",
+        link: "https://bioinfo4women.bsc.es/research-seminars/diferencias-y-desigualdades-realidad-o-ficcion-invitacion-a-la-medicina-con-vision-de-genero/"
       },
       {
-        speaker: "Dr. Clara Navas",
-        photo: "images/team/coordinator4.jpg",
-        title: "NLP for Biomedical Evidence Mapping",
-        date: "2025-07-19",
-        topics: ["NLP", "Biomedicine", "Literature Mining"],
+        speaker: "Anna Pascual",
+        title: "Spatial Transcriptomics – An Overview and Application to map tissue pathology",
+        date: "2024-05-09",
+        host: "Marta Melé",
+        topics: ["Spatial Transcriptomics", "Pathology", "Genomics"],
         abstract:
-          "An applied session on extracting structured evidence from biomedical texts, with practical examples for topic detection and fairness-aware annotation."
+          "Overview of spatial transcriptomics and its application to identify tissue pathology biomarkers beyond conventional methods.",
+        link: "https://bioinfo4women.bsc.es/research-seminars/spatial-transcriptomics-an-overview-and-application-to-map-tissue-pathology/"
+      },
+      {
+        speaker: "Pilar Nicolás",
+        title: "Data processing for scientific research: a legal approach in a case study",
+        date: "2024-04-03",
+        host: "Alfonso Valencia",
+        topics: ["Research Data", "Legal", "Ethics"],
+        abstract:
+          "A practical case-study perspective on legal obligations and compliant data-processing workflows in biomedical research.",
+        link: "https://bioinfo4women.bsc.es/research-seminars/data-processing-for-scientific-research-a-legal-approach-in-a-case-study/"
+      },
+      {
+        speaker: "Paula Petrone",
+        title: "Prediction is better than cure: how explainable AI can improve healthcare",
+        date: "2024-03-14",
+        host: "Alba Jené",
+        topics: ["Explainable AI", "Healthcare", "Machine Learning"],
+        abstract:
+          "Use cases showing how explainable machine learning can improve non-invasive diagnostics and clinical decision support.",
+        link: "https://bioinfo4women.bsc.es/research-seminars/prediction-is-better-than-cure-how-explainable-ai-can-improve-healthcare/"
+      },
+      {
+        speaker: "Beatrice Dalpedri",
+        title: "Exploring the network's world: From omics-driven machine learning workflow for drug target identification to quantisation of signalling model diversity",
+        date: "2024-03-07",
+        host: "Alfonso Valencia",
+        topics: ["Drug Discovery", "Omics", "Machine Learning"],
+        abstract:
+          "From omics-driven workflows to signaling model diversity, with focus on computational strategies for drug target discovery.",
+        link: "https://bioinfo4women.bsc.es/research-seminars/exploring-the-networks-world-from-omics-driven-machine-learning-workflow-for-drug-target-identification-to-quantisation-of-signalling-model-diversity/"
+      },
+      {
+        speaker: "Sarah Tishkoff",
+        title: "African Integrative Genomics: Reconstructing Human Evolution and the Genetic Basis of Complex Adaptive Traits",
+        date: "2024-02-22",
+        host: "Marta Melé",
+        topics: ["Human Evolution", "Population Genomics", "Africa"],
+        abstract:
+          "Integrative genomics perspective on African populations, human evolution, and the genetics of complex adaptive traits.",
+        link: "https://bioinfo4women.bsc.es/research-seminars/african-integrative-genomics-reconstructing-human-evolution-and-the-genetic-basis-of-complex-adaptive-traits/"
+      },
+      {
+        speaker: "Margarida Cardoso Moreira",
+        title: "The evolution of organs and cell types",
+        date: "2024-02-15",
+        host: "Gonzalo Parra",
+        topics: ["Evolution", "Developmental Biology", "Cell Types"],
+        abstract:
+          "Research on organ evolution and the developmental basis of sex differences through comparative and evolutionary approaches.",
+        link: "https://bioinfo4women.bsc.es/research-seminars/the-evolution-of-organs-and-cell-types/"
+      },
+      {
+        speaker: "Silvia Osuna",
+        title: "Development of new computational tools and approaches for computational enzyme design",
+        date: "2023-11-09",
+        host: "Victor Guallar",
+        topics: ["Enzyme Design", "Computational Chemistry", "Tools"],
+        abstract:
+          "New computational methods for enzyme design and their application in modern biocatalysis and molecular engineering.",
+        link: "https://bioinfo4women.bsc.es/research-seminars/development-of-new-computational-tools-and-approaches-for-computational-enzyme-design/"
+      },
+      {
+        speaker: "Laura Luebbert",
+        title: "Efficient and accurate detection of viral sequences in bulk and single-cell transcriptomics data",
+        date: "2023-09-21",
+        host: "Marta Melé",
+        topics: ["Virology", "Transcriptomics", "Single-cell"],
+        abstract:
+          "Methods for accurate viral sequence detection in bulk and single-cell transcriptomics and their implications for infectious disease research.",
+        link: "https://bioinfo4women.bsc.es/research-seminars/efficient-and-accurate-detection-of-viral-sequences-in-bulk-and-single-cell-transcriptomics-data/"
+      },
+      {
+        speaker: "Núria Queralt Rosinach",
+        title: "Towards interpretable ML and explainable AI for biomedical discovery",
+        date: "2023-06-01",
+        host: "Alfonso Valencia",
+        topics: ["Interpretable ML", "Explainable AI", "Biomedical Discovery"],
+        abstract:
+          "How interpretable machine learning and explainable AI can enhance biomedical discovery in the context of heterogeneous health data.",
+        link: "https://bioinfo4women.bsc.es/research-seminars/towards-interpretable-ml-and-explainable-ai-for-biomedical-discovery/"
       }
     ];
 
@@ -296,14 +367,16 @@
         .map(
           (seminar) => `
             <article class="seminar-card">
-              <img class="speaker-photo" src="${seminar.photo}" alt="${seminar.speaker}" />
               <div>
                 <h2 class="talk-title">${seminar.title}</h2>
-                <p class="meta"><strong>Speaker:</strong> ${seminar.speaker} · <strong>Date:</strong> ${seminar.date} · <strong>Year:</strong> ${getYear(seminar.date)}</p>
+                <p class="meta"><strong>Speaker:</strong> ${seminar.speaker} · <strong>Date:</strong> ${seminar.date} · <strong>Host:</strong> ${seminar.host} · <strong>Year:</strong> ${getYear(seminar.date)}</p>
                 <div class="chips">
                   ${seminar.topics.map((topic) => `<span class="chip">${topic}</span>`).join("")}
                 </div>
                 <p class="abstract">${seminar.abstract}</p>
+                <p class="meta" style="margin-top: 0.65rem; margin-bottom: 0;">
+                  <a href="${seminar.link}" target="_blank" style="color:#9645c0; text-decoration:none; font-weight:600;">Read full seminar details ↗</a>
+                </p>
               </div>
             </article>
           `
